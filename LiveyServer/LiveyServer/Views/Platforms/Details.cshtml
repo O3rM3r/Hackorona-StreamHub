@@ -1,0 +1,34 @@
+﻿@model LiveyServer.Models.Platform
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Platform</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.PlatformName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PlatformName)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.PlatformID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
