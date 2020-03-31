@@ -1,17 +1,20 @@
 import React from 'react';
-import './App.css';
+import './app.css';
+import DaysPanel from "./DaysPanel"
+import CategoryPanel from "./CategoryPanel"
+import FeedPanel from './FeedPanel';
 
 function App() {
   return (
     <div className="app">
       <div className="app-days-container">
-        
+        <DaysPanel />
       </div>
       <div className="app-categories-container">
-
+        <CategoryPanel />
       </div>
       <div className="app-feed-container">
-        
+        <FeedPanel />
       </div>
     </div>
   );
