@@ -10,6 +10,10 @@ function AddFeedItem({openLoginDialog}) {
  const addItem=(data)=>
   {
     fetch(`${window.baseUrl}items/`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
       method: 'post',
       body: JSON.stringify(data)
     })
@@ -28,7 +32,7 @@ function AddFeedItem({openLoginDialog}) {
       addItem(data);
     }
     console.log(data);
-    addItem(data);
+    addItem(data);  /// TODO: remove this line after completing login flow!!!!!
   }; // your form submit function which will invoke after successful validation
 
   console.log(watch("example")); // you can watch individual input by pass the name of the input

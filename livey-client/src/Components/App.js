@@ -15,6 +15,7 @@ function App() {
   const [isAddFeedOpen, setAddFeedOpen] = React.useState(false);
   const [isLoginDialogOpen, setLoginDialogOpen] = React.useState(false);
   const [feedItems, setFeedItems] = React.useState(null);
+  const [categories, setCategories] = React.useState(null);
 
   const fetchItems=async ()=>
   {
@@ -23,11 +24,21 @@ function App() {
     
     setFeedItems(items);
   }
+  const fetchCategories=async ()=>
+  {
+    const apiCall =await fetch(`${window.baseUrl}Categories/`);
+    const _categories=await apiCall.json();
+    
+    setCategories(_categories);
+  }
 
   useEffect(() => {
 
     if (!feedItems)
-    fetchItems();
+    {
+      fetchItems();
+      fetchCategories();
+    }
       // Update the document title using the browser API
       //document.title = `You clicked ${count} times`;
   });
@@ -62,6 +73,7 @@ function App() {
     setAddFeedOpen(false);
 
   }
+  console.log('categories',categories);
   return (
 
 <div className="app">
@@ -69,7 +81,7 @@ function App() {
     <Header />
   </div>
   <div className="app-categories-container">
-    <CategoryPanel />
+    <CategoryPanel categories={categories} />
   </div>
   <div className="app-days-container">
     <DaysPanel />

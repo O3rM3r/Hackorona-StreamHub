@@ -3,7 +3,7 @@ import "./category-panel.css"
 import CategoryButton from "./CategoryButton"
 
 class CategoryPanel extends Component{
-    constructor(){
+    constructor(props){
         super()
         this.state={
 
@@ -11,16 +11,29 @@ class CategoryPanel extends Component{
     
     }
     componentDidMount(){
-        fetch("https://swapi.co/api/")
+       // fetch("https://swapi.co/api/")
     }
 
     render(){
+        console.log('categories',this.props);
         return(
             <div className="category-panel">
+            {
+                /*
+            this.props.categories.map((item)=>
+                <CategoryButton category={this.props.category} />
+            )
+            */
+            }
+            {
+                /*
                 <CategoryButton />
                 <CategoryButton />
                 <CategoryButton />
                 <CategoryButton />
+                */
+            }
+                
             </div>
         )
     }

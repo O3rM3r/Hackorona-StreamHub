@@ -20,8 +20,10 @@ namespace LiveyServer
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
      
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
+           
             //Database.SetInitializer<LiveyTvContext>(new DropCreateDatabaseIfModelChanges<LiveyTvContext>());
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             ////using (var context = new LiveyTvContext())
