@@ -4,7 +4,6 @@ import Header from "./Header"
 import DaysPanel from "./DaysPanel"
 import CategoryPanel from "./CategoryPanel"
 import FeedPanel from './FeedPanel';
-import './App.css';
 import AddFeedItem from './add-feed-item';
 import SocialLoginDialog from './Social-login-dialog';
 import Drawer from '@material-ui/core/Drawer';
