@@ -18,11 +18,14 @@ class Header extends Component{
     render(){
         return (
             <div className="header-container">
-                <input 
-                name="searchInput"
-                type="text"
-                placeholder="Search..."
-                className="header-search"/>
+                <div>
+                    <span></span>
+                    <input 
+                    name="searchInput"
+                    type="text"
+                    placeholder="Search..."
+                    className="header-search"/>
+                </div>
             </div>
         )
     }

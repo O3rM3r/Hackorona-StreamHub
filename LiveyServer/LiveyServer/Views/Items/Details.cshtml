@@ -1,0 +1,98 @@
+﻿@model LiveyServer.Models.Item
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Item</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ItemTitle)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ItemTitle)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ItemURL)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ItemURL)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ItemDescription)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ItemDescription)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ItemTags)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ItemTags)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ItemStartDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ItemStartDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ItemDuration)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ItemDuration)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ItemOwner)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ItemOwner)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PlatformID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PlatformID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ItemImgURL)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ItemImgURL)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ItemID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
