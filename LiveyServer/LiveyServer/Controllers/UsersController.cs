@@ -2,117 +2,103 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
 using LiveyServer.Models;
 
 namespace LiveyServer.Controllers
 {
-    public class UsersController : Controller
+    public class UsersController : ApiController
     {
         private LiveyTvContext db = new LiveyTvContext();
 
-        // GET: Users
-        public ActionResult Index()
+        // GET: api/Users
+        public IQueryable<User> GetUsers()
         {
-            return View(db.Users.ToList());
+            return db.Users;
         }
 
-        // GET: Users/Details/5
-        public ActionResult Details(int? id)
+        // GET: api/Users/5
+        [ResponseType(typeof(User))]
+        public IHttpActionResult GetUser(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             User user = db.Users.Find(id);
             if (user == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(user);
+
+            return Ok(user);
         }
 
-        // GET: Users/Create
-        public ActionResult Create()
+        // PUT: api/Users/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutUser(int id, User user)
         {
-            return View();
-        }
-
-        // POST: Users/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,Username,UserPassword")] User user)
-        {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Users.Add(user);
+                return BadRequest(ModelState);
+            }
+
+            if (id != user.UserID)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UserExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            return View(user);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: Users/Edit/5
-        public ActionResult Edit(int? id)
+        // POST: api/Users
+        [ResponseType(typeof(User))]
+        public IHttpActionResult PostUser(User user)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
+
+            db.Users.Add(user);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = user.UserID }, user);
+        }
+
+        // DELETE: api/Users/5
+        [ResponseType(typeof(User))]
+        public IHttpActionResult DeleteUser(int id)
+        {
             User user = db.Users.Find(id);
             if (user == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(user);
-        }
 
-        // POST: Users/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,Username,UserPassword")] User user)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(user).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(user);
-        }
-
-        // GET: Users/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
-
-        // POST: Users/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            User user = db.Users.Find(id);
             db.Users.Remove(user);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Ok(user);
         }
 
         protected override void Dispose(bool disposing)
@@ -122,6 +108,11 @@ namespace LiveyServer.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool UserExists(int id)
+        {
+            return db.Users.Count(e => e.UserID == id) > 0;
         }
     }
 }

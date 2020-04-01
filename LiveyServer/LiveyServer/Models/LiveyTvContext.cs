@@ -10,6 +10,8 @@ namespace LiveyServer.Models
     {
         public LiveyTvContext() : base("name=LiveyTvConnectionString")
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<LiveyTvContext, Migrations.Configuration>());
+            //Database.SetInitializer<LiveyTvContext>(new LiveyTvContext());
         }
 
         public DbSet<Category> Categories { get; set; }

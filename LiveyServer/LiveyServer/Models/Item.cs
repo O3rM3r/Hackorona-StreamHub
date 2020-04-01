@@ -19,16 +19,28 @@ namespace LiveyServer.Models
         [Key]
         [Column(Order = 1)]
         public int ItemID { get; set; }
+
         public string ItemTitle { get; set; }
+
         public string ItemURL { get; set; }
+
         public string ItemDescription { get; set; }
+
         public string ItemTags { get; set; }
+
+        [Column(TypeName = "bigint")]
         public int ItemStartDate { get; set; }
+
         public int ItemDuration { get; set; }
+
         public string ItemOwner { get; set; }
+
         public int PlatformID { get; set; }
+
         public string ItemImgURL { get; set; }
+
         public virtual ICollection<Category> Categories { get; set; }
+
         public virtual ICollection<Platform> Platforms { get; set; }
     }
 }

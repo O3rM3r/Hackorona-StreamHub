@@ -18,16 +18,18 @@ namespace LiveyServer
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
+     
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
+            //Database.SetInitializer<LiveyTvContext>(new DropCreateDatabaseIfModelChanges<LiveyTvContext>());
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            ////using (var context = new LiveyTvContext())
+            ////{
+            ////    Database.SetInitializer<LiveyTvContext>(new DropCreateDatabaseIfModelChanges<LiveyTvContext>());
+            ////    ////context.Database.Initialize(force: true);
 
-            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<LiveyTvContext>());
-            using (var context = new LiveyTvContext())
-            {
-                context.Database.Initialize(force: true);
-
-               // Database.SetInitializer<LiveyTvContext>(null);
-            }
+            ////    // Database.SetInitializer<LiveyTvContext>(null);
+            ////}
         }
     }
 }

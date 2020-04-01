@@ -14,10 +14,15 @@ namespace LiveyServer.Models
         {
             this.Items = new HashSet<Item>(); //defines many to many
         }
+
         [Key]
         [Column(Order = 1)]
         public int PlatformID { get; set; }
+
         public string PlatformName { get; set; }
+
+        public int PlatdormParentID { get; set; }
+
         public virtual ICollection<Item> Items { get; set; }
     }
 }

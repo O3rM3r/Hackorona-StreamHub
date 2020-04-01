@@ -2,117 +2,103 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
 using LiveyServer.Models;
 
 namespace LiveyServer.Controllers
 {
-    public class ItemsController : Controller
+    public class ItemsController : ApiController
     {
         private LiveyTvContext db = new LiveyTvContext();
 
-        // GET: Items
-        public ActionResult Index()
+        // GET: api/Items
+        public IQueryable<Item> GetItems()
         {
-            return View(db.Items.ToList());
+            return db.Items;
         }
 
-        // GET: Items/Details/5
-        public ActionResult Details(int? id)
+        // GET: api/Items/5
+        [ResponseType(typeof(Item))]
+        public IHttpActionResult GetItem(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Item item = db.Items.Find(id);
             if (item == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(item);
+
+            return Ok(item);
         }
 
-        // GET: Items/Create
-        public ActionResult Create()
+        // PUT: api/Items/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutItem(int id, Item item)
         {
-            return View();
-        }
-
-        // POST: Items/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ItemID,ItemTitle,ItemURL,ItemDescription,ItemTags,ItemStartDate,ItemDuration,ItemOwner,PlatformID,ItemImgURL")] Item item)
-        {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Items.Add(item);
+                return BadRequest(ModelState);
+            }
+
+            if (id != item.ItemID)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ItemExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            return View(item);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: Items/Edit/5
-        public ActionResult Edit(int? id)
+        // POST: api/Items
+        [ResponseType(typeof(Item))]
+        public IHttpActionResult PostItem(Item item)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
+
+            db.Items.Add(item);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = item.ItemID }, item);
+        }
+
+        // DELETE: api/Items/5
+        [ResponseType(typeof(Item))]
+        public IHttpActionResult DeleteItem(int id)
+        {
             Item item = db.Items.Find(id);
             if (item == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(item);
-        }
 
-        // POST: Items/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ItemID,ItemTitle,ItemURL,ItemDescription,ItemTags,ItemStartDate,ItemDuration,ItemOwner,PlatformID,ItemImgURL")] Item item)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(item).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(item);
-        }
-
-        // GET: Items/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Item item = db.Items.Find(id);
-            if (item == null)
-            {
-                return HttpNotFound();
-            }
-            return View(item);
-        }
-
-        // POST: Items/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Item item = db.Items.Find(id);
             db.Items.Remove(item);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Ok(item);
         }
 
         protected override void Dispose(bool disposing)
@@ -122,6 +108,11 @@ namespace LiveyServer.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool ItemExists(int id)
+        {
+            return db.Items.Count(e => e.ItemID == id) > 0;
         }
     }
 }

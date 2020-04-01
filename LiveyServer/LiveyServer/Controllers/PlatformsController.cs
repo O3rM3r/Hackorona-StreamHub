@@ -2,117 +2,103 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
 using LiveyServer.Models;
 
 namespace LiveyServer.Controllers
 {
-    public class PlatformsController : Controller
+    public class PlatformsController : ApiController
     {
         private LiveyTvContext db = new LiveyTvContext();
 
-        // GET: Platforms
-        public ActionResult Index()
+        // GET: api/Platforms
+        public IQueryable<Platform> GetPlatforms()
         {
-            return View(db.Platforms.ToList());
+            return db.Platforms;
         }
 
-        // GET: Platforms/Details/5
-        public ActionResult Details(int? id)
+        // GET: api/Platforms/5
+        [ResponseType(typeof(Platform))]
+        public IHttpActionResult GetPlatform(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Platform platform = db.Platforms.Find(id);
             if (platform == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(platform);
+
+            return Ok(platform);
         }
 
-        // GET: Platforms/Create
-        public ActionResult Create()
+        // PUT: api/Platforms/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutPlatform(int id, Platform platform)
         {
-            return View();
-        }
-
-        // POST: Platforms/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PlatformID,PlatformName")] Platform platform)
-        {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Platforms.Add(platform);
+                return BadRequest(ModelState);
+            }
+
+            if (id != platform.PlatformID)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(platform).State = System.Data.Entity.EntityState.Modified;
+
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PlatformExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            return View(platform);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: Platforms/Edit/5
-        public ActionResult Edit(int? id)
+        // POST: api/Platforms
+        [ResponseType(typeof(Platform))]
+        public IHttpActionResult PostPlatform(Platform platform)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
+
+            db.Platforms.Add(platform);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = platform.PlatformID }, platform);
+        }
+
+        // DELETE: api/Platforms/5
+        [ResponseType(typeof(Platform))]
+        public IHttpActionResult DeletePlatform(int id)
+        {
             Platform platform = db.Platforms.Find(id);
             if (platform == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(platform);
-        }
 
-        // POST: Platforms/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PlatformID,PlatformName")] Platform platform)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(platform).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(platform);
-        }
-
-        // GET: Platforms/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Platform platform = db.Platforms.Find(id);
-            if (platform == null)
-            {
-                return HttpNotFound();
-            }
-            return View(platform);
-        }
-
-        // POST: Platforms/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Platform platform = db.Platforms.Find(id);
             db.Platforms.Remove(platform);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Ok(platform);
         }
 
         protected override void Dispose(bool disposing)
@@ -122,6 +108,11 @@ namespace LiveyServer.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool PlatformExists(int id)
+        {
+            return db.Platforms.Count(e => e.PlatformID == id) > 0;
         }
     }
 }

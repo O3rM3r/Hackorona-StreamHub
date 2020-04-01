@@ -2,117 +2,103 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
 using LiveyServer.Models;
 
 namespace LiveyServer.Controllers
 {
-    public class CategoriesController : Controller
+    public class CategoriesController : ApiController
     {
         private LiveyTvContext db = new LiveyTvContext();
 
-        // GET: Categories
-        public ActionResult Index()
+        // GET: api/Categories
+        public IQueryable<Category> GetCategories()
         {
-            return View(db.Categories.ToList());
+            return db.Categories;
         }
 
-        // GET: Categories/Details/5
-        public ActionResult Details(int? id)
+        // GET: api/Categories/5
+        [ResponseType(typeof(Category))]
+        public IHttpActionResult GetCategory(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Category category = db.Categories.Find(id);
             if (category == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(category);
+
+            return Ok(category);
         }
 
-        // GET: Categories/Create
-        public ActionResult Create()
+        // PUT: api/Categories/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutCategory(int id, Category category)
         {
-            return View();
-        }
-
-        // POST: Categories/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CategoryID,CategoryName")] Category category)
-        {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Categories.Add(category);
+                return BadRequest(ModelState);
+            }
+
+            if (id != category.CategoryID)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(category).State = System.Data.Entity.EntityState.Modified;
+
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CategoryExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            return View(category);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: Categories/Edit/5
-        public ActionResult Edit(int? id)
+        // POST: api/Categories
+        [ResponseType(typeof(Category))]
+        public IHttpActionResult PostCategory(Category category)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
+
+            db.Categories.Add(category);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = category.CategoryID }, category);
+        }
+
+        // DELETE: api/Categories/5
+        [ResponseType(typeof(Category))]
+        public IHttpActionResult DeleteCategory(int id)
+        {
             Category category = db.Categories.Find(id);
             if (category == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(category);
-        }
 
-        // POST: Categories/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CategoryID,CategoryName")] Category category)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(category).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(category);
-        }
-
-        // GET: Categories/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Category category = db.Categories.Find(id);
-            if (category == null)
-            {
-                return HttpNotFound();
-            }
-            return View(category);
-        }
-
-        // POST: Categories/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Category category = db.Categories.Find(id);
             db.Categories.Remove(category);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Ok(category);
         }
 
         protected override void Dispose(bool disposing)
@@ -122,6 +108,11 @@ namespace LiveyServer.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool CategoryExists(int id)
+        {
+            return db.Categories.Count(e => e.CategoryID == id) > 0;
         }
     }
 }
