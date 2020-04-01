@@ -7,11 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using LiveyServer.Models;
 
 namespace LiveyServer.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PlatformsController : ApiController
     {
         private LiveyTvContext db = new LiveyTvContext();

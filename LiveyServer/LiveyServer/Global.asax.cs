@@ -20,6 +20,7 @@ namespace LiveyServer
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
      
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
             //Database.SetInitializer<LiveyTvContext>(new DropCreateDatabaseIfModelChanges<LiveyTvContext>());
             RouteConfig.RegisterRoutes(RouteTable.Routes);
