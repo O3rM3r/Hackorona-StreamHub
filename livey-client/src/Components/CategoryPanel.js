@@ -18,6 +18,9 @@ class CategoryPanel extends Component{
         return(
             <div className="category-panel">
                 <CategoryButton />
+                <CategoryButton />
+                <CategoryButton />
+                <CategoryButton />
             </div>
         )
     }
