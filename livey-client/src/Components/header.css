@@ -2,12 +2,16 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    height: 100%;
 }
 
 .header-search{
+    display: flex;
     width: 400px;
     height:50px;
     border-radius: 15px;
     border: 1px solid #ABABAB;
-    text-indent: 25px
+    text-indent: 15px;
+    align-self: center;
+    margin: 0;
 }
