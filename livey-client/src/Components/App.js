@@ -87,7 +87,7 @@ function App() {
     <DaysPanel />
   </div>
   <div className="app-feed-container">
-    <FeedPanel />
+    <FeedPanel  feeds={feedItems} />
     <div className="add-video-container">
       <button onClick={()=>{console.log('setAddFeedOpen');setAddFeedOpen(true)}} type="button">Add video</button>
     </div>

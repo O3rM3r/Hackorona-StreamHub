@@ -19,11 +19,11 @@ class CategoryPanel extends Component{
         return(
             <div className="category-panel">
             {
-                /*
+                this.props.categories &&
             this.props.categories.map((item)=>
-                <CategoryButton category={this.props.category} />
+                <CategoryButton key={item.CategoryID} category={item} />
             )
-            */
+            
             }
             {
                 /*
