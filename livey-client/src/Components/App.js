@@ -10,8 +10,8 @@ import Drawer from '@material-ui/core/Drawer';
 
 
 function App() {
-  window.baseUrl="https://localhost:44375/api/";
-  //window.baseUrl="http://www.livey.somee.com/api/";
+  //window.baseUrl="https://localhost:44375/api/";
+  window.baseUrl="http://www.livey.somee.com/api/";
   const [isAddFeedOpen, setAddFeedOpen] = React.useState(false);
   const [isLoginDialogOpen, setLoginDialogOpen] = React.useState(false);
   const [feedItems, setFeedItems] = React.useState(null);
