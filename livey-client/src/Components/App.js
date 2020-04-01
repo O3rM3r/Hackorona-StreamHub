@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useState, useEffect } from 'react';
 import './app.css';
 import Header from "./Header"
 import DaysPanel from "./DaysPanel"
@@ -8,13 +8,42 @@ import AddFeedItem from './add-feed-item';
 import SocialLoginDialog from './Social-login-dialog';
 import Drawer from '@material-ui/core/Drawer';
 
-function App() {
 
+function App() {
+  window.baseUrl="https://localhost:44375/api/";
+  //window.baseUrl="http://www.livey.somee.com/api/";
   const [isAddFeedOpen, setAddFeedOpen] = React.useState(false);
   const [isLoginDialogOpen, setLoginDialogOpen] = React.useState(false);
+  const [feedItems, setFeedItems] = React.useState(null);
+
+  const fetchItems=async ()=>
+  {
+    const apiCall =await fetch(`${window.baseUrl}Items/`);
+    const items=await apiCall.json();
+    
+    setFeedItems(items);
+  }
+
+  useEffect(() => {
+
+    if (!feedItems)
+    fetchItems();
+      // Update the document title using the browser API
+      //document.title = `You clicked ${count} times`;
+  });
   const showAddItemTab=()=>{
 
   }
+  /*
+  const getItems=()=>
+  {
+      fetch(`${window.baseUrl}Items/`)
+      .then(response => response.json())
+      .then(data => {
+        if (data!=feedItems)
+        setFeedItems({ data })
+      });
+  }*/
   const  openLoginDialog=()=>{
     console.log('openLoginDialog');
     setLoginDialogOpen(true);
