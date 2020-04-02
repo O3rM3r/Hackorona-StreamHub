@@ -17,6 +17,8 @@
     border-radius: 15px;
 }
 
+
+
 .app-categories-container{
     display: grid;
     grid-column: 1;
@@ -48,4 +50,6 @@
     border-radius: 15px;
     box-sizing: border-box;
     margin-top: 30px;
+    padding: 30px;
 }
+

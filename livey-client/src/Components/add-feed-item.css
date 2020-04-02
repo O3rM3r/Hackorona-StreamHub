@@ -8,12 +8,12 @@
       
   }
   
-  form {
+  .AddFeedItem form {
     max-width: 500px;
     margin: 0 auto;
   }
   
-  h1 {
+  .AddFeedItem h1 {
     font-weight: 100;
     color: black;
     text-align: center;
@@ -21,22 +21,22 @@
     border-bottom: 1px solid rgb(79, 98, 148);
   }
   
-  .form {
+  .AddFeedItem .form {
     background: #0e101c;
     max-width: 400px;
     margin: 0 auto;
   }
   
-  p {
+  .AddFeedItem p {
     color: #bf1650;
   }
   
-  p::before {
+  .AddFeedItem p::before {
     display: inline;
     content: "⚠ ";
   }
   
-  input {
+  .AddFeedItem input {
     display: block;
     box-sizing: border-box;
     width: 100%;
@@ -47,7 +47,7 @@
     font-size: 14px;
   }
   
-  label {
+  .AddFeedItem label {
     line-height: 2;
     text-align: left;
     display: block;
@@ -58,8 +58,8 @@
     font-weight: 200;
   }
   
-  button[type="submit"],
-  input[type="submit"] {
+  .AddFeedItem button[type="submit"],
+  .AddFeedItem input[type="submit"] {
     background: #ec5990;
     color:white;
     text-transform: uppercase;
@@ -71,40 +71,40 @@
     letter-spacing: 10px;
   }
   
-  button[type="submit"]:hover,
-  input[type="submit"]:hover {
+  .AddFeedItem button[type="submit"]:hover,
+  .AddFeedItem input[type="submit"]:hover {
     background: #bf1650;
   }
   
-  button[type="submit"]:active,
-  input[type="button"]:active,
-  input[type="submit"]:active {
+  .AddFeedItem button[type="submit"]:active,
+  .AddFeedItem input[type="button"]:active,
+  .AddFeedItem input[type="submit"]:active {
     transition: 0.3s all;
     transform: translateY(3px);
     border: 1px solid transparent;
     opacity: 0.8;
   }
   
-  input:disabled {
+  .AddFeedItem input:disabled {
     opacity: 0.4;
   }
   
-  input[type="button"]:hover {
+  .AddFeedItem input[type="button"]:hover {
     transition: 0.3s all;
   }
   
-  button[type="submit"],
-  input[type="button"],
-  input[type="submit"] {
+  .AddFeedItem button[type="submit"],
+  .AddFeedItem input[type="button"],
+  .AddFeedItem input[type="submit"] {
     -webkit-appearance: none;
   }
   
-  .App {
+  .AddFeedItem .App {
     max-width: 600px;
     margin: 0 auto;
   }
   
-  button[type="button"] {
+  .AddFeedItem button[type="button"] {
     display: block;
     appearance: none;
     background: #333;
@@ -115,11 +115,11 @@
     border-radius: 4px;
   }
   
-  hr {
+  .AddFeedItem hr {
     margin-top: 30px;
   }
   
-  button {
+  .AddFeedItem button {
     display: block;
     appearance: none;
     margin-top: 40px;

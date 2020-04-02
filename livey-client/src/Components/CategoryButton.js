@@ -3,11 +3,11 @@ import './category-button.css';
 
 function CategoryButton(props) {
 
-  console.log('props',props);
+  //console.log('props',props);
   return (
     <div className="category-button">
 
-        <h2>Kids {/*props.category.categoryName*/}</h2>
+        <h2>{props && props.category && props.category.CategoryName}</h2>
     </div>
   );
 }

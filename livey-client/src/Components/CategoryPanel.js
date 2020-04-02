@@ -10,30 +10,18 @@ class CategoryPanel extends Component{
         }
     
     }
-    componentDidMount(){
-       // fetch("https://swapi.co/api/")
-    }
 
     render(){
-        console.log('categories',this.props);
+        //console.log('categories',this.props);
         return(
             <div className="category-panel">
-            {
-                /*
-            this.props.categories.map((item)=>
-                <CategoryButton category={this.props.category} />
-            )
-            */
-            }
-            {
-                /*
-                <CategoryButton />
-                <CategoryButton />
-                <CategoryButton />
-                <CategoryButton />
-                */
-            }
+                {
+                    this.props.categories &&
+                this.props.categories.map((item)=>
+                    <CategoryButton key={item.CategoryID} category={item} />
+                )
                 
+                }                
             </div>
         )
     }
