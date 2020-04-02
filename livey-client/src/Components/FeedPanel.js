@@ -1,12 +1,14 @@
 import React, {Component} from "react"
 import FeedItem from "./FeedItem";
 import './feed-panel.css';
+import RangeSlider from "./RangeSlider"
+
 
 
 class FeedPanel extends Component{
     constructor(props){
         super(props)
-        //state {feedItems}
+        //state 
     
     }
 
@@ -17,14 +19,13 @@ class FeedPanel extends Component{
 
         return(
             <div className="feed-panel">
-                <h1 className="feed-panel-filter">Filter 6AM--------------------------6AM</h1>
-                <div className="feed-item-container">
-                    <FeedItem />
-                    <FeedItem />
-                    <FeedItem />
-                    <FeedItem />
-                    <FeedItem />
-                    <FeedItem />
+                <div className="feed-panel-filter">
+                    <RangeSlider/>
+                </div>
+                <div className="feed-scroll-container">
+                    <div className="feed-item-container">
+                        {feedItems}
+                    </div>
                 </div>
             </div>
         )

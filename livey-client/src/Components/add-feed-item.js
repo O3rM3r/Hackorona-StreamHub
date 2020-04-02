@@ -38,35 +38,36 @@ function AddFeedItem({openLoginDialog}) {
   console.log(watch("example")); // you can watch individual input by pass the name of the input
 
 
-    return (<div className="AddFeedItem">
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label>Title</label>
-      <input name="ItemTitle" defaultValue="" ref={register} />
-      <label>URL</label>
-      <input name="ItemURL" defaultValue="" ref={register} />
-      <label>Description</label>
-      <input name="ItemDescription" defaultValue="" ref={register} />
-      <label>Tags</label>
-      <input name="ItemTags" defaultValue="" ref={register} />
-      <label>StartDate</label>
-      <input name="ItemStartDate" defaultValue="" ref={register} />
-      <label>Duration</label>
-      <input name="ItemDuration" defaultValue="" ref={register} />
-      <label>Owner</label>
-      <input name="ItemOwner" defaultValue="" ref={register} />
-      <label>Platform</label>
-      <input name="PlatformID" defaultValue="" ref={register} />
-      <label>ImgURL</label>
-      <input name="ItemImgURL" defaultValue="" ref={register} />
-      <label>ExampleRequired</label>
-     {/*<input
-        name="exampleRequired"
-        ref={register({ required: true, maxLength: 10 })}
-      />*/
-     }
-      {errors.exampleRequired && <p>This field is required</p>}
-      <input type="submit" />
-    </form>
+    return (
+    <div className="AddFeedItem">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label>Title</label>
+        <input name="ItemTitle" defaultValue="" ref={register} />
+        <label>URL</label>
+        <input name="ItemURL" defaultValue="" ref={register} />
+        <label>Description</label>
+        <input name="ItemDescription" defaultValue="" ref={register} />
+        <label>Tags</label>
+        <input name="ItemTags" defaultValue="" ref={register} />
+        <label>StartDate</label>
+        <input name="ItemStartDate" defaultValue="" ref={register} />
+        <label>Duration</label>
+        <input name="ItemDuration" defaultValue="" ref={register} />
+        <label>Owner</label>
+        <input name="ItemOwner" defaultValue="" ref={register} />
+        <label>Platform</label>
+        <input name="PlatformID" defaultValue="" ref={register} />
+        <label>ImgURL</label>
+        <input name="ItemImgURL" defaultValue="" ref={register} />
+        <label>ExampleRequired</label>
+      {/*<input
+          name="exampleRequired"
+          ref={register({ required: true, maxLength: 10 })}
+        />*/
+      }
+        {errors.exampleRequired && <p>This field is required</p>}
+        <input type="submit" />
+      </form>
     </div>);
 }
 
