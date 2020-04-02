@@ -1,10 +1,13 @@
 import React from 'react';
 import './feed-item.css';
 
-function FeedItem() {
+
+// {props.feed.ItemTitle}
+
+function FeedItem(props) {
   return (
-    <div className="category-button">
-        <h2>Feed Item</h2>
+    <div className="feed-item">
+        <h2 className="feed-item-title">Feed Title</h2>
     </div>
   );
 }

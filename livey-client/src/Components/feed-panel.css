@@ -1,0 +1,21 @@
+.feed-panel{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 40px 1fr;
+}
+
+.feed-panel-filter{
+    display: grid;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.feed-item-container{
+    display: grid;
+    grid-column: 1;
+    grid-row: 2;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    box-sizing: border-box;
+    margin: 50px;
+}
