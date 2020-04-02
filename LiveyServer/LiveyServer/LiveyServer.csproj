@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.EntityFrameworkCore.Design.3.1.3\build\net461\Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('..\packages\Microsoft.EntityFrameworkCore.Design.3.1.3\build\net461\Microsoft.EntityFrameworkCore.Design.props')" />
   <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -66,12 +65,6 @@
     </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore.Abstractions, Version=3.1.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.Abstractions.3.1.3\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore.Design, Version=3.1.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Design.3.1.3\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Design.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=3.1.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Relational.3.1.3\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=3.1.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.3.1.3\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
@@ -258,6 +251,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\PlatformsController.cs" />
+    <Compile Include="Controllers\UserFavoriteItemsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -266,12 +260,17 @@
     <Compile Include="Migrations\202003312135382_InitialCreate.designer.cs">
       <DependentUpon>202003312135382_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004022042340_SubCategory.cs" />
+    <Compile Include="Migrations\202004022042340_SubCategory.designer.cs">
+      <DependentUpon>202004022042340_SubCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\LiveyTvContext.cs" />
     <Compile Include="Models\Platform.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserFavoriteItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -382,6 +381,9 @@
     <EmbeddedResource Include="Migrations\202003312135382_InitialCreate.resx">
       <DependentUpon>202003312135382_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004022042340_SubCategory.resx">
+      <DependentUpon>202004022042340_SubCategory.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -418,7 +420,6 @@
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.EntityFrameworkCore.Design.3.1.3\build\net461\Microsoft.EntityFrameworkCore.Design.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.EntityFrameworkCore.Design.3.1.3\build\net461\Microsoft.EntityFrameworkCore.Design.props'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
