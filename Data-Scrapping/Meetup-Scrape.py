@@ -14,7 +14,7 @@ uClient.close()
 page_soup = soup(page_html, "html.parser")
 
 #create csv file
-filename = "Meetups.csv"
+filename = "./Data/Meetups.csv"
 with open(filename, "w", encoding="utf=16") as f:
 
     #csv headers

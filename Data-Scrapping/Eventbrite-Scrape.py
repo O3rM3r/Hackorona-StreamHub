@@ -19,7 +19,7 @@ page_soup = soup(page_html, "html.parser")
 pages = int(page_soup.find("li", {"class": "eds-pagination__navigation-minimal"}).text.strip()[-1:])
 
 #create csv file
-filename = "Eventbrite.csv"
+filename = "./Data/Eventbrite.csv"
 with open(filename, "w", encoding="utf=16") as f:
 
     #csv headers
