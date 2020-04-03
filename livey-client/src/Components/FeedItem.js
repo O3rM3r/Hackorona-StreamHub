@@ -6,9 +6,9 @@ import { faShareSquare, faUser, faStar, faFlag } from '@fortawesome/free-regular
 //{props.feed.ItemTitle}
 
 function FeedItem(props) {
-  const kidsImg = 
+  const kidsImg = "https://images.pexels.com/photos/298825/pexels-photo-298825.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=250&w=940"
   const fitnessImg = "https://images.pexels.com/photos/416809/pexels-photo-416809.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=150&w=1260"
-  const 
+ 
   
   
   

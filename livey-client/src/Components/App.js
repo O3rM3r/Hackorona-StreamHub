@@ -1,4 +1,5 @@
 import React,{ useState, useEffect } from 'react';
+import moment from "moment"
 import './app.css';
 import Header from "./Header"
 import DaysPanel from "./DaysPanel"
@@ -17,10 +18,7 @@ function App() {
   const [feedItems, setFeedItems] = React.useState(null);
   const [categories, setCategories] = React.useState(null);
    //DayPanel Filtering Function:
-   const [daySelected, setDaySelected] = useState(0)
-   console.log(daySelected)
-
-
+  const [daySelected, setDaySelected] = useState(moment().format('YYYY-MM-DD'))
 
 
 
@@ -29,24 +27,24 @@ function App() {
   {
     const apiCall =await fetch(`${window.baseUrl}Items/`);
     const items=await apiCall.json();
-   
+    
     setFeedItems(items);
   }
   
-  const fetchCategories=async ()=>
-  {
-    const apiCall =await fetch(`${window.baseUrl}Categories/`);
-    const _categories=await apiCall.json();
+  // const fetchCategories=async ()=>
+  // {
+  //   const apiCall =await fetch(`${window.baseUrl}Categories/`);
+  //   const _categories=await apiCall.json();
     
-    setCategories(_categories);
-  }
+  //   setCategories(_categories);
+  // }
 
   useEffect(() => {
 
     if (!feedItems)
     {
       fetchItems();
-      fetchCategories();
+      //fetchCategories();
     }
       // Update the document title using the browser API
       //document.title = `You clicked ${count} times`;
@@ -84,12 +82,11 @@ function App() {
   }
   //console.log('categories',categories);
 
- 
-
   return (
 
     <div className="app">
       <div className="app-header-container">
+        <h1>{daySelected}</h1>
         <Header />
         <div className="add-video-container">
           <button onClick={()=>{console.log('setAddFeedOpen');setAddFeedOpen(true)}} type="button">Add video</button>
@@ -105,10 +102,10 @@ function App() {
         <CategoryPanel categories={categories} />
       </div>
       <div className="app-days-container">
-        <DaysPanel dayChange={setDaySelected}/>
+        <DaysPanel dayChange={setDaySelected} day={setDaySelected}/>
       </div>
       <div className="app-feed-container">
-        <FeedPanel  feeds={feedItems} day={daySelected}/>
+        <FeedPanel  feeds={feedItems}/>
       </div>
     </div>
 
