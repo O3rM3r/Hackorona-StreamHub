@@ -3,10 +3,10 @@ import moment from "moment"
 import "./days-panel.css"
 
 class DaysPanel extends Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state={
-
+            daySelected: 
         }
         this.calcDay = this.calcDay.bind(this)
         this.calcDate = this.calcDate.bind(this)
