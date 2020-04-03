@@ -16,6 +16,14 @@ function App() {
   const [isLoginDialogOpen, setLoginDialogOpen] = React.useState(false);
   const [feedItems, setFeedItems] = React.useState(null);
   const [categories, setCategories] = React.useState(null);
+   //DayPanel Filtering Function:
+   const [daySelected, setDaySelected] = useState(0)
+   console.log(daySelected)
+
+
+
+
+
 
   const fetchItems=async ()=>
   {
@@ -75,31 +83,34 @@ function App() {
 
   }
   //console.log('categories',categories);
+
+ 
+
   return (
 
-<div className="app">
-  <div className="app-header-container">
-    <Header />
-    <div className="add-video-container">
-      <button onClick={()=>{console.log('setAddFeedOpen');setAddFeedOpen(true)}} type="button">Add video</button>
+    <div className="app">
+      <div className="app-header-container">
+        <Header />
+        <div className="add-video-container">
+          <button onClick={()=>{console.log('setAddFeedOpen');setAddFeedOpen(true)}} type="button">Add video</button>
+        </div>
+        <div className="add-feed-item-container">
+          <Drawer anchor={'right'} open={isAddFeedOpen} onClose={toggleDrawer( false)}>
+          <AddFeedItem openLoginDialog={openLoginDialog}></AddFeedItem>
+          </Drawer>
+        </div>
+          <SocialLoginDialog  open={isLoginDialogOpen} onClose={handleLoginDialogClose} />
+      </div>
+      <div className="app-categories-container">
+        <CategoryPanel categories={categories} />
+      </div>
+      <div className="app-days-container">
+        <DaysPanel dayChange={setDaySelected}/>
+      </div>
+      <div className="app-feed-container">
+        <FeedPanel  feeds={feedItems} day={daySelected}/>
+      </div>
     </div>
-    <div className="add-feed-item-container">
-      <Drawer anchor={'right'} open={isAddFeedOpen} onClose={toggleDrawer( false)}>
-      <AddFeedItem openLoginDialog={openLoginDialog}></AddFeedItem>
-      </Drawer>
-    </div>
-      <SocialLoginDialog  open={isLoginDialogOpen} onClose={handleLoginDialogClose} />
-  </div>
-  <div className="app-categories-container">
-    <CategoryPanel categories={categories} />
-  </div>
-  <div className="app-days-container">
-    <DaysPanel />
-  </div>
-  <div className="app-feed-container">
-    <FeedPanel  feeds={feedItems} />
-  </div>
-</div>
 
   );
 }
