@@ -30,7 +30,7 @@ namespace LiveyServer.Models
 
         [Column(TypeName = "bigint")]
         public int ItemStartDate { get; set; }
-
+        public DateTime ItemStartDateObj { get; set; }
         public int ItemDuration { get; set; }
 
         public string ItemOwner { get; set; }

@@ -264,6 +264,10 @@
     <Compile Include="Migrations\202004022042340_SubCategory.designer.cs">
       <DependentUpon>202004022042340_SubCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004031320431_add date obj to items.cs" />
+    <Compile Include="Migrations\202004031320431_add date obj to items.designer.cs">
+      <DependentUpon>202004031320431_add date obj to items.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Item.cs" />
@@ -383,6 +387,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004022042340_SubCategory.resx">
       <DependentUpon>202004022042340_SubCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004031320431_add date obj to items.resx">
+      <DependentUpon>202004031320431_add date obj to items.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
