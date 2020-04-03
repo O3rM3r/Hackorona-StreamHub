@@ -1,26 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
 
 namespace LiveyServer.Models
 {
-    public class Category
+    public class UserFavoriteItem
     {
-        public Category()
+        public UserFavoriteItem()
         {
             this.Items = new HashSet<Item>(); //defines many to many
-            this.SubCategory = new HashSet<Category>(); //defines many to many
+            this.Users = new HashSet<User>(); //defines many to many
         }
 
         [Key]
         [Column(Order = 1)]
-        public int CategoryID { get; set; }
-        public string CategoryName { get; set; }
+        public int UserFavoriteItemID { get; set; }
+
+        public bool IsFavorite { get; set; }
+
         public virtual ICollection<Item> Items { get; set; }
-        public virtual ICollection<Category> SubCategory { get; set; }
+
+        public virtual ICollection<User> Users { get; set; }
+
     }
 }
