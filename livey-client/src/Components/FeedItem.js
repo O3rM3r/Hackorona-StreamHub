@@ -6,14 +6,14 @@ import { faShareSquare, faUser, faStar, faFlag } from '@fortawesome/free-regular
 //{props.feed.ItemTitle}
 
 function FeedItem(props) {
-  const kidsImg = 
+  
   const fitnessImg = "https://images.pexels.com/photos/416809/pexels-photo-416809.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=150&w=1260"
-  const 
+ 
   
   
   
   
-  const imgURL = props.feed.categories[0] 
+  const imgURL = props.feed.categories && props.feed.categories[0] 
   return (
     <div className="feed-item">
         <img src={props.feed.ItemImgURL} alt="Event Image"/>

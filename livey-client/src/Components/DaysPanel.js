@@ -5,9 +5,10 @@ import "./days-panel.css"
 class DaysPanel extends Component{
     constructor(props){
         super(props)
+        /*
         this.state={
             daySelected: 
-        }
+        }*/
         this.calcDay = this.calcDay.bind(this)
         this.calcDate = this.calcDate.bind(this)
         this.calcMonth = this.calcMonth.bind(this)
