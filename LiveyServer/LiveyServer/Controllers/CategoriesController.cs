@@ -18,9 +18,10 @@ namespace LiveyServer.Controllers
     {
         private LiveyTvContext db = new LiveyTvContext();
 
-        public IQueryable<Category> GetCategoryItems()
+        public IQueryable<ICollection<Item>> GetCategoryItems(int id)
         {
-            return db.Categories;
+            return db.Categories.Where(x => x.CategoryID == id).Select(t => t.Items);
+            //return db.Categories;
         }
 
         // GET: api/Categories
