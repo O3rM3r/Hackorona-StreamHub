@@ -15,14 +15,13 @@ class FeedPanel extends Component{
 
     render(){
         const feedItems = this.props.feeds && this.props.feeds.map(item => {
-            const itemDate = moment(`/Date(${item.ItemStartDate})/`)//make same as daySelected syntax
            if (this.props.daySelected === itemDate) {
+            //const itemDate = moment(`/Date(${item.ItemStartDate})/`)//make same as daySelected syntax
                 return  <FeedItem key={item.ItemID} feed={item} />
             } else {
                 return null
-            }
-                
-            })
+            } 
+        })
 
         return(
             <div className="feed-panel">
