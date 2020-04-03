@@ -9,7 +9,7 @@
 }
 
 .app-header-container{
-    display: grid;
+    display: flex;
     grid-column: 1;
     grid-row: 1;
     height: 10vh;
@@ -42,7 +42,8 @@
 }
 
 .app-feed-container{
-    display: grid;
+    display: flex;
+    flex-direction: column;
     grid-column: 1;
     grid-row: 4;
     height: calc(55vh - 60px);

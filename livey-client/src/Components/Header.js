@@ -26,6 +26,9 @@ class Header extends Component{
                     placeholder="Search..."
                     className="header-search"/>
                 </div>
+                <div>
+                <button></button>
+                </div>
             </div>
         )
     }

@@ -316,9 +316,7 @@ D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.Bcl.AsyncInterfaces.
 D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.Bcl.HashCode.dll
 D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.EntityFrameworkCore.Abstractions.dll
-D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.EntityFrameworkCore.Design.dll
 D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.EntityFrameworkCore.dll
-D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.EntityFrameworkCore.Relational.dll
 D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.Extensions.Caching.Abstractions.dll
 D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.Extensions.Caching.Memory.dll
 D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.Extensions.Configuration.Abstractions.dll
@@ -361,8 +359,6 @@ D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.Bcl.AsyncInterfaces.
 D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.Bcl.HashCode.xml
 D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.EntityFrameworkCore.xml
 D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.EntityFrameworkCore.Abstractions.xml
-D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.EntityFrameworkCore.Design.xml
-D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.EntityFrameworkCore.Relational.xml
 D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.Extensions.Caching.Abstractions.xml
 D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.Extensions.Caching.Memory.xml
 D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.Extensions.Configuration.xml
@@ -396,7 +392,6 @@ D:\programming3\livey\LiveyServer\LiveyServer\bin\System.Web.WebPages.Razor.xml
 D:\programming3\livey\LiveyServer\LiveyServer\bin\Antlr3.Runtime.pdb
 D:\programming3\livey\LiveyServer\LiveyServer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\programming3\livey\LiveyServer\LiveyServer\obj\Debug\LiveyServer.csprojAssemblyReference.cache
-D:\programming3\livey\LiveyServer\LiveyServer\obj\Debug\LiveyServer.dll.config
 D:\programming3\livey\LiveyServer\LiveyServer\obj\Debug\LiveyServer.Migrations.InitialCreate.resources
 D:\programming3\livey\LiveyServer\LiveyServer\obj\Debug\LiveyServer.csproj.GenerateResource.cache
 D:\programming3\livey\LiveyServer\LiveyServer\obj\Debug\LiveyServer.csproj.CoreCompileInputs.cache
@@ -556,3 +551,5 @@ D:\MyProjects\yanivgershon\livey\LiveyServer\LiveyServer\obj\Debug\LiveyServer.c
 D:\MyProjects\yanivgershon\livey\LiveyServer\LiveyServer\obj\Debug\LiveyServer.dll
 D:\MyProjects\yanivgershon\livey\LiveyServer\LiveyServer\obj\Debug\LiveyServer.pdb
 D:\MyProjects\yanivgershon\livey\LiveyServer\LiveyServer\obj\Debug\LiveyServer.Migrations.SubCategory.resources
+D:\programming3\livey\LiveyServer\LiveyServer\obj\Debug\LiveyServer.Migrations.SubCategory.resources
+D:\programming3\livey\LiveyServer\LiveyServer\obj\Debug\LiveyServer.Migrations.adddateobjtoitems.resources
