@@ -9,7 +9,8 @@ function FeedItem(props) {
   
   const kidsImg = "https://images.pexels.com/photos/298825/pexels-photo-298825.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=250&w=940"
   const fitnessImg = "https://images.pexels.com/photos/416809/pexels-photo-416809.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=150&w=1260"
- 
+  
+  
   
   
   
@@ -27,7 +28,7 @@ function FeedItem(props) {
         </div>
         <div className="feed-item-description">
           <p>{props.feed.ItemDescription}</p>
-          <a href={props.feed.ItemURL}>Link to Live Event</a>
+          <a href="https://picsum.photos/200/300">Link to Live Event</a>
         </div>
         <div className="feed-item-icons">
           <div className="feed-item-icons-class">
