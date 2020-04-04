@@ -2,6 +2,7 @@ import bs4
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import io
+import re
 
 myurl = "https://www.baavir.com/"
 
@@ -13,58 +14,34 @@ uClient.close()
 #parses the info
 page_soup = soup(page_html, "html.parser")
 
-# #create csv file
-# filename = "Baavir.csv"
-# with open(filename, "w", encoding="utf=16") as f:
-#
-#     #csv headers
-#     headers = "Date., Time., Title., Organization., Url\n"
-#     f.write(headers)
+#create csv file
+filename = "./Data/Baavir.csv"
+with open(filename, "w", encoding="utf=16") as f:
 
-#retrieve data
-events = page_soup.findAll("div", {"class":"style-k8by4ap42inlineContentParent"})
-event = events[0]
-info = event.findAll("div", {"class":"txtNew"})
-infoText = info.pop()
-info2 = infoText.findAll("h4", {"class":"font_4"})
-info3 = [t for t in info2 if t.find("span", {"class":"wixGuard"}) != -1]
-i = 0
-print(len(info2))
-for t in info2:
+    #csv headers
+    headers = "Date., Time., Title., Url\n"
+    f.write(headers)
 
-    if(t.findAll("span", {"class":"wixGuard"}) != -1):
+    #retrieve data
+    info = page_soup.find("div", {"id":"comp-k8jqm5nb1inlineContent-gridContainer"})
+    date = info.find("span", {"style":"font-size:38px;"}).text.split(" ")
+    for d in date:
+        if "." in d:
+            date = d
+    events = info.findAll("div", {"style":"display:flex;flex-direction:column"})
+    for e in events:
+        eUrl = e.find("a", {"class":"ImageButton_1link"})["href"]
+        moreInfo = e.findAll("h4")
+        pattern = re.compile('<span class="wixGuard">')
+        titleTime = []
+        for i in moreInfo:
+            if pattern.search(str(i)) is not None or i.text.strip() == "" or i.text.strip() == " ":
+                continue
+            titleTime.append(i.text.strip())
+        time = titleTime.pop(0)
+        title = " - ".join(titleTime)
 
-        print("nope" + str(i))
-        i = int(i)+1
+        #write data in csv
+        f.write(date + ".," + time + ".," + title + ".," + eUrl + "\n")
 
-
-# cleanText = [i.lstrip() for i in infoText]
-hour = info.pop().text
-
-
-# print(hour)
-print(info2)
-
-
-
-#     for event in events:
-#
-#         date = event["data-day"] + "." + event["data-month"] + "." + event["data-year"].strip()
-#         ampm = event.find("time").text.strip()[-2:]
-#         time = event.find("time").text.strip()[:-2]
-#         if ampm == "PM":
-#             min = time[-4:]
-#             time = str(int(time[:-4])+12)+min.strip()
-#
-#         titles = event.findAll("span", {"itemprop":"name"})
-#         title = titles[1].text.strip()
-#         ###Add if title contains POSTPONED or DELETED or CANCELLED -> delete
-#         organization = titles[0].text.strip()
-#
-#         urls = event.findAll("a", {"itemprop":"url"})
-#         eUrl = urls[1]["href"].strip()
-#         #print(date + ".," + time + ".," + title + ".," + organization + ".," + eUrl)
-#         #write data in csv
-#         f.write(date + ".," + time + ".," + title + ".," + organization + ".," + eUrl + "\n")
-#
-# f.close()
+f.close()
