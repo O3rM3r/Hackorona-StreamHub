@@ -7,18 +7,10 @@ import { faShareSquare, faUser, faStar, faFlag } from '@fortawesome/free-regular
 
 function FeedItem(props) {
   
-  const kidsImg = "https://images.pexels.com/photos/298825/pexels-photo-298825.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=250&w=940"
-  const fitnessImg = "https://images.pexels.com/photos/416809/pexels-photo-416809.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=150&w=1260"
-  
-  
-  
-  
-  
-  
   const imgURL = props.feed.categories && props.feed.categories[0] 
   return (
     <div className="feed-item">
-        <img src={props.feed.ItemImgURL} alt="Event Image"/>
+        <img src={props.image} alt="Event Image"/>
         <div className="feed-item-title">
           <h2>{props.feed.ItemTitle}</h2>
           <h3>{props.feed.ItemStartDate}</h3>
@@ -28,7 +20,7 @@ function FeedItem(props) {
         </div>
         <div className="feed-item-description">
           <p>{props.feed.ItemDescription}</p>
-          <a href="https://picsum.photos/200/300">Link to Live Event</a>
+          <a href={props.feed.ItemURL}>Link to Live Event</a>
         </div>
         <div className="feed-item-icons">
           <div className="feed-item-icons-class">
