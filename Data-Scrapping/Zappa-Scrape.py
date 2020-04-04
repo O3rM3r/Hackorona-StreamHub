@@ -5,6 +5,8 @@ from bs4 import BeautifulSoup as soup
 import io
 import re
 
+print("Scrapping data from: Zappa.co.il")
+
 myurl = "https://www.zappa-club.co.il/content/the-show-must-go-on/"
 
 #Grapping page
@@ -41,8 +43,8 @@ with open(filename, "w", encoding="utf=16") as f:
     dateDay = eList.pop(0).split(" - ")
     date = dateDay.pop().strip()
     day = dateDay.pop().strip()
-    print("day " + day)
-    print("date " + date)
+    # print("day " + day)
+    # print("date " + date)
 
     for event in eList:
         if event.count("-") == 1:
@@ -53,7 +55,7 @@ with open(filename, "w", encoding="utf=16") as f:
             sEvent = event.split(" - ")
             time = sEvent.pop(0)
             title = sEvent.pop(0)
-        print(date + ".," + time + ".," + title + ".," + url)
+        # print(date + ".," + time + ".," + title + ".," + url)
         #write data in csv
         f.write(date + ".," + time + ".," + title + ".," + url + "\n")
 #
