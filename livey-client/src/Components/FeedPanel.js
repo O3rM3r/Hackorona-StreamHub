@@ -9,15 +9,16 @@ import RangeSlider from "./RangeSlider"
 class FeedPanel extends Component{
     constructor(props){
         super(props)
-        //state 
     
     }
 
     render(){
+
         const feedItems = this.props.feeds && this.props.feeds.map(item => {
-            const itemDate = item.ItemStartDateObj.slice(0,10)           
+            const itemDate = item.ItemStartDateObj.slice(0,10)
+            const randomImg = `https://i.picsum.photos/id/${Math.round(Math.random() * 1000)}/200/300.jpg`           
             if (this.props.dayFilter === itemDate) {
-                return  <FeedItem key={item.ItemID} feed={item} />
+                return  <FeedItem key={item.ItemID} feed={item} image={randomImg}/>
             } else {
                 return null
             } 
