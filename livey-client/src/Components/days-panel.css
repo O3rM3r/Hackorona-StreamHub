@@ -1,5 +1,13 @@
 .days-panel{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+}
+
+.days-panel-dates{
     display: flex;
+    grid-row: 1;
+    grid-column: 2;
     align-content: center;
     justify-content: space-around;
     font-size: 0.6vw;
@@ -7,15 +15,41 @@
     padding: 0;
 }
 
-.days-panel-title{
+.days-panel-filter-title{
     display: flex;
-    border-right: 2px solid rgba(0, 0, 0, 0.5);
+    grid-row: 2;
+    grid-column: 1;
+    align-self: center;
+    border-right: 2px solid rgba(255, 255, 255, 0.5);
     border-bottom: none;
     padding-bottom: 0;
     font-weight: 400;
-    color: rgba(0, 0, 0, 0.5);
-    padding-bottom: 3px;
-    padding-top: 3px;
+    font-size: 1.8vw;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 20px;
+}
+
+.days-panel-filter{
+    display: flex;
+    grid-row: 2;
+    grid-column: 2;
+    align-content: center;
+    justify-content: space-around;
+    font-size: 0.6vw;
+    border-bottom: none;
+    margin-top: 20px;
+}
+
+.days-panel-title{
+    display: flex;
+    grid-row: 1;
+    grid-column: 1;
+    border-right: 2px solid rgba(255, 255, 255, 0.5);
+    border-bottom: none;
+    padding-bottom: 0;
+    font-weight: 400;
+    font-size: 1.8vw;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .days-panel-day-regular{
@@ -23,22 +57,22 @@
     font-weight: 400;
     border-bottom: none;
     padding-bottom: 0;
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
 }
 
 .days-panel-day-regular:hover{
-    color: rgba(0, 0, 0, 0.8);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .days-panel-day-bold{
     display: flex;
-    font-weight: 700;
+    font-weight: 600;
     border-bottom: none;
     padding-bottom: 0;
-    color: black;
+    color: rgb(255, 255, 255);
     cursor: default;
     padding-bottom: 3px;
-    border-bottom: 3px black solid;
+    border-bottom: 2px rgb(255, 255, 255) solid;
 }
 

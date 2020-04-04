@@ -6,6 +6,8 @@
     background: linear-gradient(135deg, #711778, #007853);
     box-sizing: border-box;
     padding: 30px;
+    align-content: flex-start;
+    overflow: scroll;
 }
 
 .app-header-container{
@@ -13,18 +15,15 @@
     grid-column: 1;
     grid-row: 1;
     height: 10vh;
-    background: white;
     border-radius: 15px;
 }
-
-
 
 .app-categories-container{
     display: grid;
     grid-column: 1;
     grid-row: 2;
     height: calc(25vh - 90px);
-    background: white;
+    background: #F9F9F9;
     border-radius: 15px;
     margin-top: 30px;
 }
@@ -35,7 +34,6 @@
     grid-column: 1;
     grid-row: 3;
     height: 10vh;
-    background: white;
     border-radius: 15px;
     margin-top: 30px;
     align-content: center;
@@ -47,8 +45,7 @@
     flex-direction: column;
     grid-column: 1;
     grid-row: 4;
-    height: calc(55vh - 60px);
-    background: white;
+    background: #F9F9F9;
     border-radius: 15px;
     box-sizing: border-box;
     margin-top: 30px;
