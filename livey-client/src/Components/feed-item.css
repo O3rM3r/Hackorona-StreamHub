@@ -58,6 +58,7 @@
 .feed-item-description {
     display: grid;
     grid-area: desc;
+    align-content: flex-end;
 }
 
 .feed-item-description p {

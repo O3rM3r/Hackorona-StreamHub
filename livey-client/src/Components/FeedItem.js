@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from "moment"
 import './feed-item.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShareSquare, faUser, faStar, faFlag } from '@fortawesome/free-regular-svg-icons'
@@ -7,13 +8,17 @@ import { faShareSquare, faUser, faStar, faFlag } from '@fortawesome/free-regular
 
 function FeedItem(props) {
   
-  const imgURL = props.feed.categories && props.feed.categories[0] 
+  const imgURL = props.feed.categories && props.feed.categories[0]
+  const timeObj = moment(props.feed.ItemStartDateObj).format("DD/MM | HH:mm")
+  const timeEnd = moment(props.feed.ItemStartDateObj).add(props.feed.ItemDuration, "seconds").format("HH:mm")
+
+  
   return (
     <div className="feed-item">
         <img src={props.image} alt="Event Image"/>
         <div className="feed-item-title">
-          <h2>{props.feed.ItemTitle}</h2>
-          <h3>{props.feed.ItemStartDate}</h3>
+          <h2 onClick={() => console.log(timeObj)}>{props.feed.ItemTitle}</h2>
+          <h3>{`${timeObj}-${timeEnd}`}</h3>
         </div>
         <div className="feed-item-timelabel">
           <h2>8:00</h2>
