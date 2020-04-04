@@ -27,6 +27,7 @@
     font-size: 1.8vw;
     color: rgba(255, 255, 255, 0.5);
     margin-top: 20px;
+    margin-left: 20px;
 }
 
 .days-panel-filter{
@@ -50,6 +51,7 @@
     font-weight: 400;
     font-size: 1.8vw;
     color: rgba(255, 255, 255, 0.5);
+    margin-left: 20px;
 }
 
 .days-panel-day-regular{
