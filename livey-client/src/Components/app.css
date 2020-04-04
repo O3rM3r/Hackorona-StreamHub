@@ -30,7 +30,8 @@
 }
 
 .app-days-container{
-    display: grid;
+    display: flex;
+    flex-direction: column;
     grid-column: 1;
     grid-row: 3;
     height: 10vh;

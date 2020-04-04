@@ -91,6 +91,7 @@ function App() {
 
     <div className="app">
       <div className="app-header-container">
+        <h1>{daySelected}</h1> {/*Testing*/}
       <div style={{marginLeft:30,marginTop:10}}>
       <img src={require('./025---Live-Recording.png')}/>
       </div>
@@ -109,12 +110,12 @@ function App() {
       placeholder="Search..."
   className="header-search"/>*/}
   </div>
-  <div style={{marginLeft:"auto",marginRight:30}}>
-  <Button style={{marginTop:30}} variant="outlined" onClick={()=>{console.log('setAddFeedOpen');setAddFeedOpen(true)}} type="button">Add Event</Button>
-  </div>
-  <div  style={{marginRight:30}}>
-  <Button style={{marginTop:30,marginLeft:"auto"}} variant="outlined" onClick={()=>{console.log('setAddFeedOpen');setLoginDialogOpen(true)}} type="button">Login</Button>
-  </div>
+    <div style={{marginLeft:"auto",marginRight:30}}>
+      <Button style={{marginTop:30}} variant="outlined" onClick={()=>{console.log('setAddFeedOpen');setAddFeedOpen(true)}} type="button">Add Event</Button>
+    </div>
+    <div  style={{marginRight:30}}>
+      <Button style={{marginTop:30,marginLeft:"auto"}} variant="outlined" onClick={()=>{console.log('setAddFeedOpen');setLoginDialogOpen(true)}} type="button">Login</Button>
+    </div>
         {/*<Header />*/}
         <div className="add-video-container">
        
@@ -133,7 +134,7 @@ function App() {
         <DaysPanel dayChange={setDaySelected} day={setDaySelected}/>
       </div>
       <div className="app-feed-container">
-        <FeedPanel  feeds={feedItems}/>
+        <FeedPanel  feeds={feedItems} dayFilter={daySelected}/>
       </div>
     </div>
 
