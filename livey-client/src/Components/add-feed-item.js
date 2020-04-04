@@ -1,12 +1,22 @@
-import React from 'react';
+import 'date-fns';
+import React,{useState} from 'react';
 import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
 import './add-feed-item.css';
 import {getSocialUser,setSocialUse} from '../Services/localStorageService';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import TimePicker from 'react-time-picker';
+import InputMask from 'react-input-mask';
+import MaterialInput from '@material-ui/core/Input';
 
 function AddFeedItem({openLoginDialog}) {
 
-
+  
+  const [selectedDate, handleDateChange] = useState(new Date());
+  const [selectedTime, handleTimeChange] = useState(new Date());
+  const [duration, setDuration] = useState(new Date());
+  
  const addItem=(data)=>
   {
     fetch(`${window.baseUrl}items/`, {
@@ -41,7 +51,9 @@ function AddFeedItem({openLoginDialog}) {
     return (
     <div className="AddFeedItem">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label>Title</label>
+      <div className="formFlex">
+        <div>
+        <label>Titley</label>
         <input name="ItemTitle" defaultValue="" ref={register} />
         <label>URL</label>
         <input name="ItemURL" defaultValue="" ref={register} />
@@ -49,23 +61,35 @@ function AddFeedItem({openLoginDialog}) {
         <input name="ItemDescription" defaultValue="" ref={register} />
         <label>Tags</label>
         <input name="ItemTags" defaultValue="" ref={register} />
-        <label>StartDate</label>
-        <input name="ItemStartDate" defaultValue="" ref={register} />
+        <label>Start Time</label>
+        <DatePicker
+        selected={selectedDate}
+        onChange={handleDateChange}
+        ref={register} 
+      />
+        {/*<label>StartDate</label>
+        <input name="ItemStartDate" defaultValue="" ref={register} />*/}
+        </div>
+     
+        <div style={{marginLeft:30}}>
         <label>Duration</label>
-        <input name="ItemDuration" defaultValue="" ref={register} />
+        <InputMask name="duration" mask="99:99:99" defaultValue="01:00:00" maskChar=" " ref={register} />
         <label>Owner</label>
         <input name="ItemOwner" defaultValue="" ref={register} />
         <label>Platform</label>
         <input name="PlatformID" defaultValue="" ref={register} />
         <label>ImgURL</label>
         <input name="ItemImgURL" defaultValue="" ref={register} />
-        <label>ExampleRequired</label>
+        
       {/*<input
           name="exampleRequired"
           ref={register({ required: true, maxLength: 10 })}
         />*/
       }
         {errors.exampleRequired && <p>This field is required</p>}
+       
+        </div>
+        </div>
         <input type="submit" />
       </form>
     </div>);

@@ -14,10 +14,22 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import  Logo from './Logo';
 
+import clsx from 'clsx';
+
+
+
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
+
 
 function App() {
 
-  
+  let myRef;
  
   //window.baseUrl="https://localhost:44375/api/";
   window.baseUrl="http://www.livey.somee.com/api/";
@@ -34,6 +46,7 @@ function App() {
 
   const fetchItems=async ()=>
   {
+   
     const apiCall =await fetch(`${window.baseUrl}Items/`);
     const items=await apiCall.json();
     console.log('items',items);
@@ -73,6 +86,7 @@ function App() {
     setAddFeedOpen(false);
   }
   const toggleDrawer = (anchor, open) => (event) => {
+    
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
@@ -120,10 +134,18 @@ function App() {
         <div className="add-video-container">
        
         </div>
+        
         <div className="add-feed-item-container">
-          <Drawer anchor={'right'} open={isAddFeedOpen} onClose={toggleDrawer( false)}>
+       
+          <Drawer ref={myRef} anchor={'right'} open={isAddFeedOpen} onClose={toggleDrawer( false)}>
+          {
+          
           <AddFeedItem openLoginDialog={openLoginDialog}></AddFeedItem>
+          
+        }
           </Drawer>
+         
+       
         </div>
           <SocialLoginDialog  open={isLoginDialogOpen} onClose={handleLoginDialogClose} />
       </div>
