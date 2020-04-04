@@ -4,7 +4,8 @@ from bs4 import BeautifulSoup as soup
 from datetime import datetime, timedelta
 import io
 
-print("Retrieving number of pages to scrape")
+print("Scrapping data from: Eventbrite.com")
+
 myurl = "https://www.eventbrite.com/d/online/israel/?page=1"
 
 #Grapping page
@@ -23,11 +24,11 @@ filename = "./Data/Eventbrite.csv"
 with open(filename, "w", encoding="utf=16") as f:
 
     #csv headers
-    headers = "Date., Time., Weekday., Title., Url\n"
+    headers = "Date., Time., Title., Url\n"
     f.write(headers)
 
     for p in range(pages):
-        print("Scrapping page " + str(p+1))
+        # print("Scrapping page " + str(p+1))
         myurl = "https://www.eventbrite.com/d/online/israel/?page=" + str(p+1)
 
         # Grapping page

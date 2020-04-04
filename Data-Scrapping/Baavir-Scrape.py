@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup as soup
 import io
 import re
 
+print("Scrapping data from: Baavir.com")
+
 myurl = "https://www.baavir.com/"
 
 #Grapping page

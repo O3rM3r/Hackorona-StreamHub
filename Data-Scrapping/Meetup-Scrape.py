@@ -3,6 +3,8 @@ from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import io
 
+print("Scrapping data from: Meetup.com")
+
 myurl = "https://www.meetup.com/find/events/?allMeetups=true&radius=100&userFreeform=Tel+Aviv%2C+Israel&mcName=Tel+Aviv%2C+IL&lat=32.066498&lon=34.765198"
 
 #Grapping page
@@ -18,7 +20,7 @@ filename = "./Data/Meetups.csv"
 with open(filename, "w", encoding="utf=16") as f:
 
     #csv headers
-    headers = "Date., Time., Title., Organization., Url\n"
+    headers = "Date., Time., Title., Url\n"
     f.write(headers)
 
     #retrieve data
@@ -46,8 +48,8 @@ with open(filename, "w", encoding="utf=16") as f:
 
         urls = event.findAll("a", {"itemprop":"url"})
         eUrl = urls[1]["href"].strip()
-        print(date + ".," + time + ".," + title + ".," + organization + ".," + eUrl)
+        # print(date + ".," + time + ".," + title + ".," + organization + ".," + eUrl)
         #write data in csv
-        f.write(date + ".," + time + ".," + title + ".," + organization + ".," + eUrl + "\n")
+        f.write(date + ".," + time + ".," + title + ".," + eUrl + ".," + organization + "\n")
 
 f.close()
