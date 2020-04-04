@@ -1,3 +1,7 @@
+.formFlex
+{
+  display: flex;
+}
 .AddFeedItem {
     
     background: whitesmoke;
