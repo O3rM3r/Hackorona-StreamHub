@@ -3,6 +3,7 @@ from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 from datetime import datetime, timedelta
 import io
+from catergoryDict import categories as cDict
 
 print("Scrapping data from: Eventbrite.com")
 
@@ -24,7 +25,7 @@ filename = "./Data/Eventbrite.csv"
 with open(filename, "w", encoding="utf=16") as f:
 
     #csv headers
-    headers = "Date., Time., Title., Url\n"
+    headers = "Date., Time., Title., Caterogies., Url\n"
     f.write(headers)
 
     for p in range(pages):
@@ -109,9 +110,13 @@ with open(filename, "w", encoding="utf=16") as f:
                 elif fMD == "Tomorrow":
                     raw_date = datetime.today() + timedelta(days=1)
                     date = raw_date.strftime('%d.%m.%Y')
-    
-            #print(date + ".," + time + ".," + title + ".," + eUrl)
+
+            titleL = title.lower().split(" ")
+            eCat = {cDict[key] for key in cDict.keys() & set(titleL)}
+            print(eCat)
+
+            print(date + ".," + time + ".," + title + ".," + str(list(eCat)) + ".," + eUrl + "\n")
             #write data in csv
-            f.write(date + ".," + time + ".," + title + ".," + eUrl + "\n")
+            f.write(date + ".," + time + ".," + title + ".," + str(list(eCat)) + ".," + eUrl + "\n")
 
 f.close()

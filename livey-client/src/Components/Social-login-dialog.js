@@ -79,7 +79,7 @@ const SocialLoginDialog = forwardRef((props, ref) =>
   return (
     <Dialog  style={{fontSize:20}} onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
     { /* <DialogTitle id="simple-dialog-title">Please Login</DialogTitle>*/}
-    <div style={{textAlign:"right",backgroundColor:"whitesmoke",padding:20}}>X</div>
+    <div style={{textAlign:"right",backgroundColor:"whitesmoke",padding:20,cursor:"pointer"}} onClick={()=>{onClose();}}>X</div>
     <div style={{display:"flex",flexDirection:"column",padding:20,textAlign:"center",backgroundColor:"whitesmoke"}}>
    
     <div>LOGIN</div>

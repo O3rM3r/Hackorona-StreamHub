@@ -25,6 +25,8 @@ function AddFeedItem({openLoginDialog,openAddFeedDialog,handleAddFeedClose}) {
   }
  const addItem=(data)=>
   {
+    data.PlatformID=1;
+    data.ItemStartDateObj =selectedDate;
     fetch(`${window.baseUrl}items/`, {
       headers: {
         'Accept': 'application/json',
@@ -34,7 +36,9 @@ function AddFeedItem({openLoginDialog,openAddFeedDialog,handleAddFeedClose}) {
       body: JSON.stringify(data)
     })
     .then(response => response.json())
-    .then(console.log('response'));
+    .then(()=>{console.log('response')
+    handleFeedDialogClose();
+  });
   }
     const { register, handleSubmit, watch, errors } = useForm();
   const onSubmit = data => {
@@ -48,7 +52,7 @@ function AddFeedItem({openLoginDialog,openAddFeedDialog,handleAddFeedClose}) {
       addItem(data);
     }
     console.log(data);
-    handleFeedDialogClose();
+  
     //addItem(data);  /// TODO: remove this line after completing login flow!!!!!
   }; // your form submit function which will invoke after successful validation
 
@@ -57,6 +61,7 @@ function AddFeedItem({openLoginDialog,openAddFeedDialog,handleAddFeedClose}) {
 
     return (
       <Dialog onClose={()=>{console.log('onclose'); handleFeedDialogClose();}} aria-labelledby="simple-dialog-title" open={openAddFeedDialog}>
+      <div style={{textAlign:"right",backgroundColor:"whitesmoke",padding:20,cursor:"pointer"}} onClick={()=>handleFeedDialogClose()}>X</div>
       {/*<DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>*/}
     <div className="AddFeedItem">
       <form onSubmit={handleSubmit(onSubmit)}>
