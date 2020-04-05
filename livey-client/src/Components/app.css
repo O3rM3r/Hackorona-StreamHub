@@ -8,6 +8,7 @@
     padding: 30px;
     align-content: flex-start;
     overflow: scroll;
+    overflow-x: hidden
 }
 
 .app-header-container{
@@ -50,13 +51,14 @@
     box-sizing: border-box;
     margin-top: 30px;
     padding: 30px;
+    margin-bottom: 30px;
 }
 
 .app-autocomple .MuiAutocomplete-inputRoot
 {
 background-color: white;
 }
-.app-autocomple .MuiAutocomplete-tag
+.app-autocomple .MuiAutocomplete-groupLabel
 {
     color: black;
 }

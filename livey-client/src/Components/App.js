@@ -14,6 +14,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import  Logo from './Logo';
 import {getSocialUser,setSocialUser} from '../Services/localStorageService'
+import Loading from "./Loading"
 
 import clsx from 'clsx';
 
@@ -32,8 +33,8 @@ function App() {
 
   let myRef;
  
-  window.baseUrl="https://localhost:44375/api/";
-  //window.baseUrl="http://www.livey.somee.com/api/";
+  //window.baseUrl="https://localhost:44375/api/";
+  window.baseUrl="http://www.livey.somee.com/api/";
   const [isAddFeedOpen, setAddFeedOpen] = React.useState(false);
   const [isLoginDialogOpen, setLoginDialogOpen] = React.useState(false);
   const [feedItems, setFeedItems] = React.useState(null);
@@ -41,13 +42,16 @@ function App() {
   const [autoComleteFeed,setAutoComleteFeed]= React.useState([]);
   const [isFetchedData,setIsFetchedData]= React.useState(false);
   
-//  const [isFeedDialogOpen, handleFeedDialogChange] = useState(false);
-   //DayPanel Filtering Function:
+  //  const [isFeedDialogOpen, handleFeedDialogChange] = useState(false);
+  //DayPanel Filtering Function:
   const [daySelected, setDaySelected] = useState(moment().format('YYYY-MM-DD'))
+  const [isLoading, setIsLoading] = useState(true)
 
   const childSocialLoginRef = createRef();
 
   console.log(childSocialLoginRef.current);
+  console.log("hello world");
+
 
 
   const fetchItems=async ()=>
@@ -59,6 +63,7 @@ function App() {
      top100Films.push({ title: 'The Shawshank Redemption', year: 1994 });
      setAutoComleteFeed(items);
     setFeedItems(items);
+    setIsLoading(false)
   }
   
  const fetchCategories=async ()=>
@@ -113,14 +118,16 @@ function App() {
   };
   
   //console.log('categories',categories);
-  
+
+  if (isLoading) return (<Loading />)
   return (
 
     <div className="app">
+      
       <div className="app-header-container">
         {/* <h1>{daySelected}</h1> Testing */}
-      <div style={{marginLeft:30,marginTop:10}}>
-      <img src={require('./025---Live-Recording.png')}/>
+      <div style={{marginLeft:30}}>
+      <img src={require('./StreamHub_Logo.png')} style={{width:300}}/>
       </div>
       <div  style={{marginLeft:300}}>
       
