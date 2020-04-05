@@ -14,9 +14,9 @@ function FeedItem(props) {
   const catColor = () => {
     if(props.feed.categories === "kids"){return "rgba(241, 49, 255, 0.65)"}
     else if(props.feed.categories === "lectures"){return "rgba(241, 49, 255, 0.65)"}
-    else if(props.feed.categories === "fitness"){return "rgba(241, 49, 255, 0.65)"}
-    else if(props.feed.categories === "fun"){return "rgba(241, 49, 255, 0.65)"}
-    else if(props.feed.categories === "other"){return "rgba(241, 49, 255, 0.65)"}
+    else if(props.feed.categories === "fitness"){return "rgba(158, 120, 228, 0.65)"}
+    else if(props.feed.categories === "fun"){return "rgba(91, 178, 206, 0.65)"}
+    else if(props.feed.categories === "other"){return "rgba(51, 190, 46, 0.65)"}
   }
   const labelStyle = props.feed.categories ? props.feed.categories : "red"
   

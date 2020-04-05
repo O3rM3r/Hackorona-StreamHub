@@ -4,11 +4,16 @@ import CategoryButton from "./CategoryButton"
 
 class CategoryPanel extends Component{
     constructor(props){
-        super()
+        super(props)
         this.state={
 
         }
-    
+        
+        this.handleClick = this.handleClick.bind(this)
+    }
+    handleClick(event){
+        
+
     }
 
     render(){
