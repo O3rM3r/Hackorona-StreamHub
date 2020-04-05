@@ -32,8 +32,8 @@ function App() {
 
   let myRef;
  
-  window.baseUrl="https://localhost:44375/api/";
-  //window.baseUrl="http://www.livey.somee.com/api/";
+  //window.baseUrl="https://localhost:44375/api/";
+  window.baseUrl="http://www.livey.somee.com/api/";
   const [isAddFeedOpen, setAddFeedOpen] = React.useState(false);
   const [isLoginDialogOpen, setLoginDialogOpen] = React.useState(false);
   const [feedItems, setFeedItems] = React.useState(null);
@@ -119,8 +119,8 @@ function App() {
     <div className="app">
       <div className="app-header-container">
         {/* <h1>{daySelected}</h1> Testing */}
-      <div style={{marginLeft:30,marginTop:10}}>
-      <img src={require('./025---Live-Recording.png')}/>
+      <div style={{marginLeft:30}}>
+      <img src={require('./StreamHub_Logo.png')} style={{width:300}}/>
       </div>
       <div  style={{marginLeft:300}}>
       

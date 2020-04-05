@@ -20,9 +20,16 @@ namespace LiveyServer.Controllers
         private LiveyTvContext db = new LiveyTvContext();
 
         // GET: api/Items
-        public IQueryable<Item> GetItems()
+        public List<Item> GetItems()
         {
-            return db.Items;
+            try
+            {
+                return db.Items.ToList();
+            }
+            catch(Exception ee)
+            {
+                return null;
+            }
         }
 
         // GET: api/Items/5
