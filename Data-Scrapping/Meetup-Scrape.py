@@ -2,6 +2,7 @@ import bs4
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import io
+from catergoryDict import categories as cDict
 
 print("Scrapping data from: Meetup.com")
 
@@ -20,7 +21,7 @@ filename = "./Data/Meetups.csv"
 with open(filename, "w", encoding="utf=16") as f:
 
     #csv headers
-    headers = "Date., Time., Title., Url\n"
+    headers = "Date., Time., Title., Caterogies., Url\n"
     f.write(headers)
 
     #retrieve data
@@ -48,8 +49,13 @@ with open(filename, "w", encoding="utf=16") as f:
 
         urls = event.findAll("a", {"itemprop":"url"})
         eUrl = urls[1]["href"].strip()
-        # print(date + ".," + time + ".," + title + ".," + organization + ".," + eUrl)
+
+        titleL = title.lower().split(" ")
+        eCat = {cDict[key] for key in cDict.keys() & set(titleL)}
+        print(eCat)
+
+        print(date + ".," + time + ".," + title + ".," + str(list(eCat)) + ".," + eUrl + "\n")
         #write data in csv
-        f.write(date + ".," + time + ".," + title + ".," + eUrl + ".," + organization + "\n")
+        f.write(date + ".," + time + ".," + title + ".," + str(list(eCat)) + ".," + eUrl + "\n")
 
 f.close()
