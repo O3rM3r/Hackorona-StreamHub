@@ -1,4 +1,4 @@
-import React,{useState,forwardRef} from 'react';
+import React,{useState,forwardRef, useImperativeHandle} from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -35,13 +35,19 @@ const SocialLoginDialog = forwardRef((props, ref) =>
   const { onClose, open } = props;
 
 
+  useImperativeHandle(ref, () => ({
+    doLogout() {
+      logout(getSocialUser().provider)
+    }
+  }))
 
-const doLogout=()=>
-{
-  logout(getSocialUser().provider)
-}
+  const doLogout=()=>
+  {
+    logout(getSocialUser().provider)
+  }
+
   const logout= (currentProvider)=> {
-   
+  
 
     if (logged && currentProvider) {
       this.nodes[currentProvider].props.triggerLogout()

@@ -1,11 +1,25 @@
 .category-panel{
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    padding-left: 15vw;
+    padding-right: 15vw;
+}
+
+
+
+
+
+
+
+/* .category-panel{
     display: grid;
     grid-auto-columns: minmax(150px ,200px);
     grid-template-rows: 1fr;
-    grid-gap: 5vw;
+    grid-gap: 20px;
     height: 100%;
     box-sizing: border-box;
     padding: 0px 10vw 0px 10vw;
     justify-content: center;
     align-content: flex-start;
-}
+} */

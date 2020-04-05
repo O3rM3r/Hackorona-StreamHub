@@ -14,6 +14,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import  Logo from './Logo';
 import {getSocialUser,setSocialUser} from '../Services/localStorageService'
+import Loading from "./Loading"
 
 import clsx from 'clsx';
 
@@ -40,13 +41,16 @@ function App() {
   const [categories, setCategories] = React.useState(null);
   const [autoComleteFeed,setAutoComleteFeed]= React.useState([]);
   
-//  const [isFeedDialogOpen, handleFeedDialogChange] = useState(false);
-   //DayPanel Filtering Function:
+  //  const [isFeedDialogOpen, handleFeedDialogChange] = useState(false);
+  //DayPanel Filtering Function:
   const [daySelected, setDaySelected] = useState(moment().format('YYYY-MM-DD'))
+  const [isLoading, setIsLoading] = useState(true)
 
   const childSocialLoginRef = createRef();
 
   console.log(childSocialLoginRef.current);
+  console.log("hello world");
+
 
 
   const fetchItems=async ()=>
@@ -112,9 +116,11 @@ function App() {
   
   //console.log('categories',categories);
 
+  if (isLoading) return (<Loading />)
   return (
 
     <div className="app">
+      
       <div className="app-header-container">
         {/* <h1>{daySelected}</h1> Testing */}
       <div style={{marginLeft:30,marginTop:10}}>
