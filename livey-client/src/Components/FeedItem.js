@@ -11,6 +11,13 @@ function FeedItem(props) {
   const imgURL = props.feed.categories && props.feed.categories[0]
   const timeObj = moment(props.feed.ItemStartDateObj).format("DD/MM | HH:mm")
   const timeEnd = moment(props.feed.ItemStartDateObj).add(props.feed.ItemDuration, "seconds").format("HH:mm")
+  const catColor = () => {
+    if(props.feed.categories === "kids"){return "rgba(241, 49, 255, 0.65)"}
+    else if(props.feed.categories === "lectures"){return "rgba(241, 49, 255, 0.65)"}
+    else if(props.feed.categories === "fitness"){return "rgba(241, 49, 255, 0.65)"}
+    else if(props.feed.categories === "fun"){return "rgba(241, 49, 255, 0.65)"}
+    else if(props.feed.categories === "other"){return "rgba(241, 49, 255, 0.65)"}
+  }
   const labelStyle = props.feed.categories ? props.feed.categories : "red"
   
   return (

@@ -1,11 +1,14 @@
 import React from "react";
 import "./loading.css"
-import stream_hub_logo from "../../public/stream_hub_logo.png"
+import stream_hub_logo from "../stream_hub_logo.png"
 
 function Loading(){
     return(
         <div className="loading-overlay">
-            <img src={stream_hub_logo}>hello world</img>
+            <img src={stream_hub_logo} alt="Logo"/>
+            <div className="loader-container">
+                <div className="loader">Loading...</div>
+            </div>
         </div>
    )
 }

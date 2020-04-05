@@ -56,12 +56,13 @@ function App() {
   const fetchItems=async ()=>
   {
    
-    const apiCall =await fetch(`${window.baseUrl}Items/`);
+    const apiCall =await fetch(`${window.baseUrl}items/`);
     const items=await apiCall.json();
     console.log('items',items);
      top100Films.push({ title: 'The Shawshank Redemption', year: 1994 });
      setAutoComleteFeed(items);
     setFeedItems(items);
+    setIsLoading(false)
   }
   
   // const fetchCategories=async ()=>
