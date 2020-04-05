@@ -77,15 +77,22 @@ namespace LiveyServer.Controllers
         [ResponseType(typeof(Item))]
         public IHttpActionResult PostItem(Item item)
         {
-            if (!ModelState.IsValid)
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                db.Items.Add(item);
+                db.SaveChanges();
+
+                return CreatedAtRoute("DefaultApi", new { id = item.ItemID }, item);
+            }
+            catch (Exception ee)
             {
                 return BadRequest(ModelState);
             }
-
-            db.Items.Add(item);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = item.ItemID }, item);
         }
 
         // DELETE: api/Items/5

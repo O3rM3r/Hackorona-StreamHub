@@ -9,11 +9,13 @@ class SocialButton extends React.Component {
             <Button onClick={this.props.triggerLogin} {...this.props}
             style={{
         
-                backgroundColor: "#21b6ae",
+                backgroundColor: "white",
               
                 magin: "18px 36px",
+              
                 fontSize: "18px",
-                width:"150px",
+                width:"250px",
+                height:80,
                 "&:hover": {
                   background: "#efefef"
                 }

@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react';
+import React,{ useState, useEffect,useRef,createRef } from 'react';
 import moment from "moment"
 import './app.css';
 import Header from "./Header"
@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import  Logo from './Logo';
+import {getSocialUser,setSocialUser} from '../Services/localStorageService'
 
 import clsx from 'clsx';
 
@@ -31,17 +32,22 @@ function App() {
 
   let myRef;
  
-  //window.baseUrl="https://localhost:44375/api/";
-  window.baseUrl="http://www.livey.somee.com/api/";
+  window.baseUrl="https://localhost:44375/api/";
+  //window.baseUrl="http://www.livey.somee.com/api/";
   const [isAddFeedOpen, setAddFeedOpen] = React.useState(false);
   const [isLoginDialogOpen, setLoginDialogOpen] = React.useState(false);
   const [feedItems, setFeedItems] = React.useState(null);
   const [categories, setCategories] = React.useState(null);
   const [autoComleteFeed,setAutoComleteFeed]= React.useState([]);
+  const [isFetchedData,setIsFetchedData]= React.useState(false);
+  
+//  const [isFeedDialogOpen, handleFeedDialogChange] = useState(false);
    //DayPanel Filtering Function:
   const [daySelected, setDaySelected] = useState(moment().format('YYYY-MM-DD'))
 
+  const childSocialLoginRef = createRef();
 
+  console.log(childSocialLoginRef.current);
 
 
   const fetchItems=async ()=>
@@ -55,20 +61,21 @@ function App() {
     setFeedItems(items);
   }
   
-  // const fetchCategories=async ()=>
-  // {
-  //   const apiCall =await fetch(`${window.baseUrl}Categories/`);
-  //   const _categories=await apiCall.json();
+ const fetchCategories=async ()=>
+ {
+    const apiCall =await fetch(`${window.baseUrl}Categories/`);
+    const _categories=await apiCall.json();
     
-  //   setCategories(_categories);
-  // }
+    setCategories(_categories);
+  }
 
   useEffect(() => {
 
-    if (!feedItems)
+    if (!isFetchedData)
     {
+      setIsFetchedData(true);
       fetchItems();
-      //fetchCategories();
+      fetchCategories();
     }
       // Update the document title using the browser API
       //document.title = `You clicked ${count} times`;
@@ -90,7 +97,13 @@ function App() {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-    setAddFeedOpen(false);
+    //setAddFeedOpen(false);
+    //setLoginDialogOpen(false);
+    
+
+  }
+  const doLogout=()=>
+  {
 
   }
   let top100Films=[];
@@ -100,18 +113,18 @@ function App() {
   };
   
   //console.log('categories',categories);
-
+  
   return (
 
     <div className="app">
       <div className="app-header-container">
-        <h1>{daySelected}</h1> {/*Testing*/}
+        {/* <h1>{daySelected}</h1> Testing */}
       <div style={{marginLeft:30,marginTop:10}}>
       <img src={require('./025---Live-Recording.png')}/>
       </div>
       <div  style={{marginLeft:300}}>
       
-      { autoComleteFeed.length>0 && <Autocomplete style={{width:300}}
+      { true && /*autoComleteFeed.length>0*/ <Autocomplete className="app-autocomple" style={{width:300,height:60}}
         {...defaultProps}
         id="auto-complete"
         autoComplete
@@ -125,11 +138,18 @@ function App() {
   className="header-search"/>*/}
   </div>
     <div style={{marginLeft:"auto",marginRight:30}}>
-      <Button style={{marginTop:30}} variant="outlined" onClick={()=>{console.log('setAddFeedOpen');setAddFeedOpen(true)}} type="button">Add Event</Button>
+      <Button style={{marginTop:30}} variant="contained" onClick={()=>{console.log('setAddFeedOpen');setAddFeedOpen(true)}} type="button">Add Event</Button>
     </div>
+    {true /*!getSocialUser()*/ &&
     <div  style={{marginRight:30}}>
-      <Button style={{marginTop:30,marginLeft:"auto"}} variant="outlined" onClick={()=>{console.log('setAddFeedOpen');setLoginDialogOpen(true)}} type="button">Login</Button>
+      <Button style={{marginTop:30,marginLeft:"auto"}} variant="contained" onClick={()=>{console.log('setAddFeedOpen');setLoginDialogOpen(true)}} type="button">Login</Button>
     </div>
+    }
+    { false/*getSocialUser()*/ &&
+    <div  style={{marginRight:30}}>
+    <Button style={{marginTop:30,marginLeft:"auto"}} variant="outlined" onClick={()=>{console.log('setAddFeedOpen');  childSocialLoginRef.current.doLogout()}} type="button">Logout</Button>
+  </div>
+    }
         {/*<Header />*/}
         <div className="add-video-container">
        
@@ -137,17 +157,17 @@ function App() {
         
         <div className="add-feed-item-container">
        
-          <Drawer ref={myRef} anchor={'right'} open={isAddFeedOpen} onClose={toggleDrawer( false)}>
-          {
+          {/*<Drawer ref={myRef} anchor={'right'} open={isAddFeedOpen} onClose={toggleDrawer( false)}>*/}
           
-          <AddFeedItem openLoginDialog={openLoginDialog}></AddFeedItem>
           
-        }
-          </Drawer>
+          <AddFeedItem openLoginDialog={openLoginDialog} openAddFeedDialog={isAddFeedOpen}  handleAddFeedClose={()=>setAddFeedOpen(false)}></AddFeedItem>
+          
+        
+         {/* </Drawer>*/}
          
        
         </div>
-          <SocialLoginDialog  open={isLoginDialogOpen} onClose={handleLoginDialogClose} />
+          <SocialLoginDialog  open={isLoginDialogOpen} onClose={handleLoginDialogClose}  ref={childSocialLoginRef}/>
       </div>
       <div className="app-categories-container">
         <CategoryPanel categories={categories} />

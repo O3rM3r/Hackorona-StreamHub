@@ -1,61 +1,61 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
+import "./range-slider.css"
 
-const useStyles = makeStyles({
-  root: {
-    width: 600,
-  },
-});
+const getPercentage = (current, max) => (100 * current) / max;
+const getLeft = percentage => `calc(${percentage}% - 5px)`;
 
-function valuetext(value) {
-  return `${value}°C`;
-}
+function RangeSlider() {
+  
+  const sliderRef = React.useRef();
+  const thumbRef = React.useRef();
+  
+  const diff = React.useRef();
 
-const marks = [
-  {
-    value: 2,
-    label: '6:00AM',
-  },
-  {
-    value: 26,
-    label: '12:00',
-  },
-  {
-    value: 50,
-    label: '6:00PM',
-  },
-  {
-    value: 76,
-    label: '12:00',
-  },
-  {
-    value: 98,
-    label: '6:00AM',
-  },
-];
+  const handleMouseMove = event => {
+    let newX =
+      event.clientX -
+      diff.current -
+      sliderRef.current.getBoundingClientRect().left;
 
-export default function RangeSlider() {
-  const classes = useStyles();
-  const [value, setValue] = React.useState([20, 37]);
+    const end = sliderRef.current.offsetWidth - thumbRef.current.offsetWidth;
+    const start = 0;
+    if (newX < start) {
+      newX = 0;
+    }
+    if (newX > end) {
+      newX = end;
+    }
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+    const newPercentage = getPercentage(newX, end);
+    thumbRef.current.style.left = getLeft(newPercentage);
   };
 
+  const handleMouseUp = () => {
+    document.removeEventListener('mouseup', handleMouseUp);
+    document.removeEventListener('mousemove', handleMouseMove);
+  };
+
+  const handleMouseDown = event => {
+    diff.current =
+      event.clientX - thumbRef.current.getBoundingClientRect().left;
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+  };
+
+  
+
   return (
-    <div className={classes.root}>
-      <Typography id="range-slider" gutterBottom>
-      </Typography>
-      <Slider
-        value={value}
-        onChange={handleChange}
-        valueLabelDisplay="auto"
-        aria-labelledby="range-slider"
-        getAriaValueText={valuetext}
-        marks={marks}
-      />
+    <div className="slider-cont">
+      <div className="slider" ref={sliderRef}> 
+        <div className="slider-thumb" ref={thumbRef} onMouseDown={handleMouseDown}/>
+      </div>
+      <div className="slider-label-container">
+        <h1 className="slider-left-label">6AM</h1>
+        <h1 className="slider-right-label">6AM</h1>
+      </div>
     </div>
   );
-}
+};
+
+export default RangeSlider
