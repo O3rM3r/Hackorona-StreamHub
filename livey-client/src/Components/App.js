@@ -126,8 +126,8 @@ function App() {
       
       <div className="app-header-container">
         {/* <h1>{daySelected}</h1> Testing */}
-      <div style={{marginLeft:30,marginTop:10}}>
-      <img src={require('./025---Live-Recording.png')}/>
+      <div style={{marginLeft:30}}>
+      <img src={require('./StreamHub_Logo.png')} style={{width:300}}/>
       </div>
       <div  style={{marginLeft:300}}>
       
