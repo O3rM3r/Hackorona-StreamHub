@@ -47,7 +47,7 @@ with open(filename, "w", encoding="utf=16") as f:
         eCat = {cDict[key] for key in cDict.keys() & set(titleL)}
         print(eCat)
 
-        # print(date + ".," + time + ".," + title + ".," + str(list(eCat)) + ".," + eUrl + "\n")
+        print(date + ".," + time + ".," + title + ".," + str(list(eCat)) + ".," + eUrl + "\n")
         #write data in csv
         f.write(date + ".," + time + ".," + title + ".," + str(list(eCat)) + ".," + eUrl + "\n")
 
