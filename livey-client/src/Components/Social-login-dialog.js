@@ -30,11 +30,16 @@ const useStyles = makeStyles({
 const SocialLoginDialog = forwardRef((props, ref) => 
 {
   const [ logged, setLoged ] = useState(getSocialUser());
+
   const classes = useStyles();
   const { onClose, open } = props;
 
 
 
+const doLogout=()=>
+{
+  logout(getSocialUser().provider)
+}
   const logout= (currentProvider)=> {
    
 
