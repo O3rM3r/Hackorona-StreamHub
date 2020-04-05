@@ -4,6 +4,7 @@ from urllib.request import Request
 from bs4 import BeautifulSoup as soup
 import io
 import re
+from catergoryDict import categories as cDict
 
 print("Scrapping data from: Zappa.co.il")
 
@@ -23,10 +24,10 @@ filename = "./Data/Zappa.csv"
 with open(filename, "w", encoding="utf=16") as f:
 
     #csv headers
-    headers = "Date., Time., Title., Url\n"
+    headers = "Date., Time., Title., Caterogies., Url\n"
     f.write(headers)
     #retrieve data
-    url = myurl
+    eUrl = myurl
 
     ref = page_soup.find("div", {"class":"content_group wide_-content"})
     events = ref.findAll("p")
@@ -55,8 +56,11 @@ with open(filename, "w", encoding="utf=16") as f:
             sEvent = event.split(" - ")
             time = sEvent.pop(0)
             title = sEvent.pop(0)
-        # print(date + ".," + time + ".," + title + ".," + url)
+
+        eCat = {"shows"}
+
+        print(date + ".," + time + ".," + title + ".," + str(list(eCat)) + ".," + eUrl + "\n")
         #write data in csv
-        f.write(date + ".," + time + ".," + title + ".," + url + "\n")
+        f.write(date + ".," + time + ".," + title + ".," + str(list(eCat)) + ".," + eUrl + "\n")
 #
 f.close()

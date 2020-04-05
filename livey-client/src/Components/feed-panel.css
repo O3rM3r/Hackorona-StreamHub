@@ -1,7 +1,7 @@
 .feed-panel{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 40px 1fr;
+    grid-template-rows: 1fr;
 }
 
 .feed-panel-filter{
@@ -24,7 +24,7 @@
     display: grid;
     grid-column: 1;
     grid-row: 1;
-    grid-template-columns: repeat(auto-fit, 520px);
+    grid-template-columns: repeat(auto-fit, 390px);
     gap: 60px;
     box-sizing: border-box;
     margin: 50px;

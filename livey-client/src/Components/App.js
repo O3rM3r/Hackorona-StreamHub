@@ -14,6 +14,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import  Logo from './Logo';
 import {getSocialUser,setSocialUser} from '../Services/localStorageService'
+import Loading from "./Loading"
 
 import clsx from 'clsx';
 
@@ -41,13 +42,16 @@ function App() {
   const [autoComleteFeed,setAutoComleteFeed]= React.useState([]);
   const [isFetchedData,setIsFetchedData]= React.useState(false);
   
-//  const [isFeedDialogOpen, handleFeedDialogChange] = useState(false);
-   //DayPanel Filtering Function:
+  //  const [isFeedDialogOpen, handleFeedDialogChange] = useState(false);
+  //DayPanel Filtering Function:
   const [daySelected, setDaySelected] = useState(moment().format('YYYY-MM-DD'))
+  const [isLoading, setIsLoading] = useState(true)
 
   const childSocialLoginRef = createRef();
 
   console.log(childSocialLoginRef.current);
+  console.log("hello world");
+
 
 
   const fetchItems=async ()=>
@@ -59,6 +63,7 @@ function App() {
      top100Films.push({ title: 'The Shawshank Redemption', year: 1994 });
      setAutoComleteFeed(items);
     setFeedItems(items);
+    setIsLoading(false)
   }
   
  const fetchCategories=async ()=>
@@ -113,10 +118,12 @@ function App() {
   };
   
   //console.log('categories',categories);
-  
+
+  if (isLoading) return (<Loading />)
   return (
 
     <div className="app">
+      
       <div className="app-header-container">
         {/* <h1>{daySelected}</h1> Testing */}
       <div style={{marginLeft:30}}>

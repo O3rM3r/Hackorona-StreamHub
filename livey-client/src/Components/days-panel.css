@@ -10,6 +10,7 @@
     grid-column: 2;
     align-content: center;
     justify-content: space-around;
+    /* font-size: 0.6vw; */
     font-size: 0.6vw;
     border-bottom: none;
     padding: 0;
@@ -24,8 +25,8 @@
     border-bottom: none;
     padding-bottom: 0;
     font-weight: 400;
-    font-size: 1.8vw;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.5vw;
+    color: rgba(255, 255, 255, 1);
     margin-top: 20px;
     margin-left: 20px;
 }
@@ -49,8 +50,8 @@
     border-bottom: none;
     padding-bottom: 0;
     font-weight: 400;
-    font-size: 1.8vw;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.5vw;
+    color: rgba(255, 255, 255, 1);
     margin-left: 20px;
 }
 
