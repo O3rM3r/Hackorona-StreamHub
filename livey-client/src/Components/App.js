@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react';
+import React,{ useState, useEffect,useRef,createRef } from 'react';
 import moment from "moment"
 import './app.css';
 import Header from "./Header"
@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import  Logo from './Logo';
+import {getSocialUser,setSocialUser} from '../Services/localStorageService'
 
 import clsx from 'clsx';
 
@@ -38,10 +39,14 @@ function App() {
   const [feedItems, setFeedItems] = React.useState(null);
   const [categories, setCategories] = React.useState(null);
   const [autoComleteFeed,setAutoComleteFeed]= React.useState([]);
+  
+//  const [isFeedDialogOpen, handleFeedDialogChange] = useState(false);
    //DayPanel Filtering Function:
   const [daySelected, setDaySelected] = useState(moment().format('YYYY-MM-DD'))
 
+  const childSocialLoginRef = createRef();
 
+  console.log(childSocialLoginRef.current);
 
 
   const fetchItems=async ()=>
@@ -90,7 +95,13 @@ function App() {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-    setAddFeedOpen(false);
+    //setAddFeedOpen(false);
+    //setLoginDialogOpen(false);
+    
+
+  }
+  const doLogout=()=>
+  {
 
   }
   let top100Films=[];
@@ -127,9 +138,16 @@ function App() {
     <div style={{marginLeft:"auto",marginRight:30}}>
       <Button style={{marginTop:30}} variant="outlined" onClick={()=>{console.log('setAddFeedOpen');setAddFeedOpen(true)}} type="button">Add Event</Button>
     </div>
+    {!getSocialUser() &&
     <div  style={{marginRight:30}}>
       <Button style={{marginTop:30,marginLeft:"auto"}} variant="outlined" onClick={()=>{console.log('setAddFeedOpen');setLoginDialogOpen(true)}} type="button">Login</Button>
     </div>
+    }
+    {getSocialUser() &&
+    <div  style={{marginRight:30}}>
+    <Button style={{marginTop:30,marginLeft:"auto"}} variant="outlined" onClick={()=>{console.log('setAddFeedOpen');  childSocialLoginRef.current.doLogout()}} type="button">Logout</Button>
+  </div>
+    }
         {/*<Header />*/}
         <div className="add-video-container">
        
@@ -137,17 +155,17 @@ function App() {
         
         <div className="add-feed-item-container">
        
-          <Drawer ref={myRef} anchor={'right'} open={isAddFeedOpen} onClose={toggleDrawer( false)}>
-          {
+          {/*<Drawer ref={myRef} anchor={'right'} open={isAddFeedOpen} onClose={toggleDrawer( false)}>*/}
           
-          <AddFeedItem openLoginDialog={openLoginDialog}></AddFeedItem>
           
-        }
-          </Drawer>
+          <AddFeedItem openLoginDialog={openLoginDialog} openAddFeedDialog={isAddFeedOpen}  handleAddFeedClose={()=>setAddFeedOpen(false)}></AddFeedItem>
+          
+        
+         {/* </Drawer>*/}
          
        
         </div>
-          <SocialLoginDialog  open={isLoginDialogOpen} onClose={handleLoginDialogClose} />
+          <SocialLoginDialog  open={isLoginDialogOpen} onClose={handleLoginDialogClose}  ref={childSocialLoginRef}/>
       </div>
       <div className="app-categories-container">
         <CategoryPanel categories={categories} />

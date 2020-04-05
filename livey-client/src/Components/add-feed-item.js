@@ -9,14 +9,20 @@ import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from 'react-time-picker';
 import InputMask from 'react-input-mask';
 import MaterialInput from '@material-ui/core/Input';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
 
-function AddFeedItem({openLoginDialog}) {
+function AddFeedItem({openLoginDialog,openAddFeedDialog,handleAddFeedClose}) {
 
   
   const [selectedDate, handleDateChange] = useState(new Date());
   const [selectedTime, handleTimeChange] = useState(new Date());
   const [duration, setDuration] = useState(new Date());
   
+  const handleFeedDialogClose=()=>
+  {
+    handleAddFeedClose(false);
+  }
  const addItem=(data)=>
   {
     fetch(`${window.baseUrl}items/`, {
@@ -42,13 +48,16 @@ function AddFeedItem({openLoginDialog}) {
       addItem(data);
     }
     console.log(data);
-    addItem(data);  /// TODO: remove this line after completing login flow!!!!!
+    handleFeedDialogClose();
+    //addItem(data);  /// TODO: remove this line after completing login flow!!!!!
   }; // your form submit function which will invoke after successful validation
 
   console.log(watch("example")); // you can watch individual input by pass the name of the input
 
 
     return (
+      <Dialog onClose={()=>{console.log('onclose'); handleFeedDialogClose();}} aria-labelledby="simple-dialog-title" open={openAddFeedDialog}>
+      {/*<DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>*/}
     <div className="AddFeedItem">
       <form onSubmit={handleSubmit(onSubmit)}>
       <div className="formFlex">
@@ -92,7 +101,9 @@ function AddFeedItem({openLoginDialog}) {
         </div>
         <input type="submit" />
       </form>
-    </div>);
+    </div>
+    </Dialog>
+    );
 }
 
 export default AddFeedItem;

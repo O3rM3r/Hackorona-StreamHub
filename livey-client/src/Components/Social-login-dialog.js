@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,forwardRef} from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -27,8 +27,8 @@ const useStyles = makeStyles({
 
 
     
-
-function SocialLoginDialog(props) {
+const SocialLoginDialog = forwardRef((props, ref) => 
+{
   const [ logged, setLoged ] = useState(getSocialUser());
   const classes = useStyles();
   const { onClose, open } = props;
@@ -66,8 +66,15 @@ function SocialLoginDialog(props) {
   };
 
   return (
-    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-      <DialogTitle id="simple-dialog-title">Please Login</DialogTitle>
+    <Dialog  style={{fontSize:20}} onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
+    { /* <DialogTitle id="simple-dialog-title">Please Login</DialogTitle>*/}
+    <div style={{textAlign:"right",backgroundColor:"whitesmoke",padding:20}}>X</div>
+    <div style={{display:"flex",flexDirection:"column",padding:20,textAlign:"center",backgroundColor:"whitesmoke"}}>
+   
+    <div>LOGIN</div>
+    <div>Please Choose Login</div>
+    <div>In Order to make out</div>
+    <div>content best for you</div>
       <div style={{margin:"20px 20px"}}>
       <SocialButton
       provider='facebook'
@@ -78,7 +85,9 @@ function SocialLoginDialog(props) {
       Facebook
     </SocialButton>
     <br/>
+    <br />
     <SocialButton
+   
       provider='google'
       appId='34866691381-ie32747q2q8ubac3rq4qjei4vh41i7av.apps.googleusercontent.com'
       onLoginSuccess={handleSocialLogin}
@@ -116,9 +125,10 @@ function SocialLoginDialog(props) {
     variant="contained"
   className="social-login-btn">Google</Button>*/}
       </div>
+      </div>
     </Dialog>
   );
-}
+});
 
 SocialLoginDialog.propTypes = {
   onClose: PropTypes.func.isRequired,
