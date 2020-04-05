@@ -6,12 +6,13 @@
     height: 10vh;
     border-radius: 15px;
     align-self: center;
+    cursor: pointer;
 }
 
 .category-button h2 {
     text-align: center;
     align-self: center;
     text-transform: uppercase;
-    font-size: 300%;
+    font-size: 250%;
     font-weight: 300;
 }

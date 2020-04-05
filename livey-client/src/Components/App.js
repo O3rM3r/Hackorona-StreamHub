@@ -32,13 +32,14 @@ function App() {
 
   let myRef;
  
-  //window.baseUrl="https://localhost:44375/api/";
-  window.baseUrl="http://www.livey.somee.com/api/";
+  window.baseUrl="https://localhost:44375/api/";
+  //window.baseUrl="http://www.livey.somee.com/api/";
   const [isAddFeedOpen, setAddFeedOpen] = React.useState(false);
   const [isLoginDialogOpen, setLoginDialogOpen] = React.useState(false);
   const [feedItems, setFeedItems] = React.useState(null);
   const [categories, setCategories] = React.useState(null);
   const [autoComleteFeed,setAutoComleteFeed]= React.useState([]);
+  const [isFetchedData,setIsFetchedData]= React.useState(false);
   
 //  const [isFeedDialogOpen, handleFeedDialogChange] = useState(false);
    //DayPanel Filtering Function:
@@ -60,20 +61,21 @@ function App() {
     setFeedItems(items);
   }
   
-  // const fetchCategories=async ()=>
-  // {
-  //   const apiCall =await fetch(`${window.baseUrl}Categories/`);
-  //   const _categories=await apiCall.json();
+ const fetchCategories=async ()=>
+ {
+    const apiCall =await fetch(`${window.baseUrl}Categories/`);
+    const _categories=await apiCall.json();
     
-  //   setCategories(_categories);
-  // }
+    setCategories(_categories);
+  }
 
   useEffect(() => {
 
-    if (!feedItems)
+    if (!isFetchedData)
     {
+      setIsFetchedData(true);
       fetchItems();
-      //fetchCategories();
+      fetchCategories();
     }
       // Update the document title using the browser API
       //document.title = `You clicked ${count} times`;
@@ -111,7 +113,7 @@ function App() {
   };
   
   //console.log('categories',categories);
-
+  
   return (
 
     <div className="app">
@@ -122,7 +124,7 @@ function App() {
       </div>
       <div  style={{marginLeft:300}}>
       
-      { autoComleteFeed.length>0 && <Autocomplete style={{width:300}}
+      { true && /*autoComleteFeed.length>0*/ <Autocomplete className="app-autocomple" style={{width:300,height:60,marginTop:17}}
         {...defaultProps}
         id="auto-complete"
         autoComplete
@@ -136,11 +138,11 @@ function App() {
   className="header-search"/>*/}
   </div>
     <div style={{marginLeft:"auto",marginRight:30}}>
-      <Button style={{marginTop:30}} variant="outlined" onClick={()=>{console.log('setAddFeedOpen');setAddFeedOpen(true)}} type="button">Add Event</Button>
+      <Button style={{marginTop:30}} variant="contained" onClick={()=>{console.log('setAddFeedOpen');setAddFeedOpen(true)}} type="button">Add Event</Button>
     </div>
     {true /*!getSocialUser()*/ &&
     <div  style={{marginRight:30}}>
-      <Button style={{marginTop:30,marginLeft:"auto"}} variant="outlined" onClick={()=>{console.log('setAddFeedOpen');setLoginDialogOpen(true)}} type="button">Login</Button>
+      <Button style={{marginTop:30,marginLeft:"auto"}} variant="contained" onClick={()=>{console.log('setAddFeedOpen');setLoginDialogOpen(true)}} type="button">Login</Button>
     </div>
     }
     { false/*getSocialUser()*/ &&

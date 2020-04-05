@@ -52,3 +52,7 @@
     padding: 30px;
 }
 
+.app-autocomple.MuiAutocomplete-root	
+{
+background-color: white;
+}

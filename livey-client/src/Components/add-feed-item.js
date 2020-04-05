@@ -61,6 +61,7 @@ function AddFeedItem({openLoginDialog,openAddFeedDialog,handleAddFeedClose}) {
 
     return (
       <Dialog onClose={()=>{console.log('onclose'); handleFeedDialogClose();}} aria-labelledby="simple-dialog-title" open={openAddFeedDialog}>
+      <div style={{textAlign:"right",backgroundColor:"whitesmoke",padding:20,cursor:"pointer"}} onClick={()=>handleFeedDialogClose()}>X</div>
       {/*<DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>*/}
     <div className="AddFeedItem">
       <form onSubmit={handleSubmit(onSubmit)}>
