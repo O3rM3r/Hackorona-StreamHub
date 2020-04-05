@@ -52,7 +52,11 @@
     padding: 30px;
 }
 
-.app-autocomple.MuiAutocomplete-root	
+.app-autocomple .MuiAutocomplete-inputRoot
 {
 background-color: white;
+}
+.app-autocomple .MuiAutocomplete-tag
+{
+    color: black;
 }

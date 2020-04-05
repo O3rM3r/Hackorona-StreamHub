@@ -124,7 +124,7 @@ function App() {
       </div>
       <div  style={{marginLeft:300}}>
       
-      { true && /*autoComleteFeed.length>0*/ <Autocomplete className="app-autocomple" style={{width:300,height:60,marginTop:17}}
+      { true && /*autoComleteFeed.length>0*/ <Autocomplete className="app-autocomple" style={{width:300,height:60}}
         {...defaultProps}
         id="auto-complete"
         autoComplete
