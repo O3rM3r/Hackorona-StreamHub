@@ -138,12 +138,12 @@ function App() {
     <div style={{marginLeft:"auto",marginRight:30}}>
       <Button style={{marginTop:30}} variant="outlined" onClick={()=>{console.log('setAddFeedOpen');setAddFeedOpen(true)}} type="button">Add Event</Button>
     </div>
-    {!getSocialUser() &&
+    {true /*!getSocialUser()*/ &&
     <div  style={{marginRight:30}}>
       <Button style={{marginTop:30,marginLeft:"auto"}} variant="outlined" onClick={()=>{console.log('setAddFeedOpen');setLoginDialogOpen(true)}} type="button">Login</Button>
     </div>
     }
-    {getSocialUser() &&
+    { false/*getSocialUser()*/ &&
     <div  style={{marginRight:30}}>
     <Button style={{marginTop:30,marginLeft:"auto"}} variant="outlined" onClick={()=>{console.log('setAddFeedOpen');  childSocialLoginRef.current.doLogout()}} type="button">Logout</Button>
   </div>
