@@ -2,7 +2,6 @@ import React, {Component} from "react"
 import moment from "moment"
 import FeedItem from "./FeedItem";
 import './feed-panel.css';
-import RangeSlider from "./RangeSlider"
 
 
 
@@ -26,9 +25,6 @@ class FeedPanel extends Component{
 
         return(
             <div className="feed-panel">
-                <div className="feed-panel-filter">
-                    <RangeSlider/>
-                </div>
                 <div className="feed-scroll-container">
                     <div className="feed-item-container">
                         {feedItems}

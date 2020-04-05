@@ -1,0 +1,40 @@
+.slider-cont{
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    align-self: center;
+}
+
+.slider{
+    position: relative;
+    border-radius: 3px;
+    background: linear-gradient(90deg,#F575FE, #32E6BE);
+    height: 12px;
+    width: 500px;
+}
+
+.slider-thumb{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    position: relative;
+    top: -6px;
+    background: #F575FE;
+    cursor: pointer;
+}
+
+.slider-label-container{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.slider-left-label{
+    display: flex;
+    color:white;
+}
+
+.slider-right-label{
+    display: flex;
+    color:white;
+}

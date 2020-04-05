@@ -116,7 +116,7 @@ function App() {
 
     <div className="app">
       <div className="app-header-container">
-        <h1>{daySelected}</h1> {/*Testing*/}
+        {/* <h1>{daySelected}</h1> Testing */}
       <div style={{marginLeft:30,marginTop:10}}>
       <img src={require('./025---Live-Recording.png')}/>
       </div>
