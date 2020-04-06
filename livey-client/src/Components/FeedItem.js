@@ -68,6 +68,7 @@ class FeedItem extends Component{
   const imgURL = this.props.feed.categories && this.props.feed.categories[0]
   const timeObj = moment(this.props.feed.ItemStartDateObj).format("DD/MM | HH:mm")
   const timeEnd = moment(this.props.feed.ItemStartDateObj).add(this.props.feed.ItemDuration, "seconds").format("HH:mm")
+  const timeLabel = moment(this.props.feed.ItemStartDateObj).format("h:mmA")
   
     return (
       <div className="feed-item">
@@ -77,11 +78,11 @@ class FeedItem extends Component{
             <h3>{`${timeObj}-${timeEnd}`}</h3>
           </div>
           <div className="feed-item-timelabel" style={{background: this.state.catColor}}>
-            <h2>8:00</h2>
+            <h2>{timeLabel}</h2>
           </div>
           <div className="feed-item-description">
             <p>{this.props.feed.ItemDescription}</p>
-            <a href={this.props.feed.ItemURL}>Link to Live Event</a>
+            <a href={this.props.feed.ItemURL} target="_blank">Link to Live Event</a>
           </div>
           <div className="feed-item-icons">
             <div className="feed-item-icons-class" onClick={this.handleSave}>

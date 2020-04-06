@@ -6,7 +6,7 @@
                          "img . desc   desc ."
                          "img . icons icons ."
                          "img .   .     .   .";
-    grid-template-columns: 1fr 15px 200px 60px 15px;
+    grid-template-columns: 1fr 15px 200px 70px 15px;
     grid-template-rows: 20px 40px 10px 80px 1fr 10px;
     background: rgb(255, 255, 255); 
     -webkit-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.2);
@@ -56,7 +56,7 @@
     display: flex;
     justify-self: center;
     align-self: center;
-    font-size: 13pt;
+    font-size: 11pt;
 }
 
 .feed-item-description {
