@@ -14,6 +14,7 @@ class CategoryPanel extends Component{
         }
         
         this.handleClick = this.handleClick.bind(this)
+        this.handleClear = this.handleClear.bind(this)
     }
     handleClick(name){
         this.setState({selectedCategory: name})
@@ -25,6 +26,17 @@ class CategoryPanel extends Component{
             this.props.cat("fitness")} else
         if (name === 4) {this.setState({kidsLine: null, lecturesLine: null, fitnessLine: null, funLine: 1})
             this.props.cat("fun")}
+    }
+
+    handleClear(){
+        this.setState({
+            selectedCategory: null,
+            kidsLine: null,
+            lecturesLine: null,
+            fitnessLine: null,
+            funLine: null
+        })
+        this.props.cat(null)
     }
 
     render(){
@@ -73,11 +85,15 @@ class CategoryPanel extends Component{
 
                                     
         return(
-            <div className="category-panel-grid">
-                <div className="category-panel">
-                    {categoryButtons}                
+            <div className="category-panel-flex">
+                <h2 className="category-panel-title">Select Topic</h2>
+                <div className="category-panel-grid">
+                    <div className="category-panel">
+                        {categoryButtons}                
+                    </div>
+                    {underLine}
                 </div>
-                {underLine}
+                <button className="category-panel-clear" type="button" onClick={this.handleClear}>Clear</button>
             </div>
         )
     }

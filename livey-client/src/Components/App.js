@@ -27,7 +27,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-//import db from "./db.json"
+import db from "./db.json"
 
 function App() {
 
@@ -58,9 +58,9 @@ function App() {
   const fetchItems=async ()=>
   {
    
-    const apiCall =await fetch(`${window.baseUrl}Items/`);
-    const items=await apiCall.json();
-    //const items = db
+    //const apiCall =await fetch(`${window.baseUrl}Items/`);
+    //const items=await apiCall.json();
+    const items = db
     console.log('items',items);
      top100Films.push({ title: 'The Shawshank Redemption', year: 1994 });
      setAutoComleteFeed(items);
