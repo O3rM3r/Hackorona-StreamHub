@@ -27,6 +27,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import ReactGA from 'react-ga';
 //import db from "./db.json"
 
 function App() {
@@ -38,10 +39,12 @@ function App() {
   const [isAddFeedOpen, setAddFeedOpen] = React.useState(false);
   const [isLoginDialogOpen, setLoginDialogOpen] = React.useState(false);
   const [feedItems, setFeedItems] = React.useState(null);
+  const [filteredFeedItems, setFilteredFeedItems] = React.useState(null);
   const [categories, setCategories] = React.useState(null);
   const [autoComleteFeed,setAutoComleteFeed]= React.useState([]);
   const [isFetchedData,setIsFetchedData]= React.useState(false);
-  
+  ReactGA.initialize('UA-162926417-1');
+  ReactGA.pageview("/app");
   //  const [isFeedDialogOpen, handleFeedDialogChange] = useState(false);
   //DayPanel Filtering Function:
   const [daySelected, setDaySelected] = useState(moment().format('YYYY-MM-DD'))
@@ -52,9 +55,6 @@ function App() {
 
   console.log(childSocialLoginRef.current);
   console.log("hello world");
-
-
-
   const fetchItems=async ()=>
   {
    
@@ -65,6 +65,7 @@ function App() {
      top100Films.push({ title: 'The Shawshank Redemption', year: 1994 });
      setAutoComleteFeed(items);
     setFeedItems(items);
+    setFilteredFeedItems(items)
     setIsLoading(false)
   }
   
