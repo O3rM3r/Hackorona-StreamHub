@@ -119,7 +119,9 @@ function App() {
     options: autoComleteFeed,
     getOptionLabel: (option) => option.ItemTitle,
   };
-  
+  const handleLogoClick = () => {
+    window.location.reload()
+   }
   //console.log('categories',categories);
 
   if (isLoading) return (<Loading />)
@@ -130,7 +132,7 @@ function App() {
       <div className="app-header-container">
         {/* <h1>{catSelected}</h1> Testing */}
       <div style={{marginLeft:30}}>
-      <img src={require('./StreamHub_Logo.png')} style={{width:240}}/>
+      <img src={require('./StreamHub_Logo.png')} style={{width:240, cursor: "pointer"}} onClick={handleLogoClick}/>
       </div>
       <div  style={{marginLeft:300}}>
       

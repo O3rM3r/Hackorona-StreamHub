@@ -27,11 +27,13 @@ class FeedItem extends Component{
   }
 
   componentDidMount(){
-    if(this.props.feed.Categories[0] === "kids"){this.setState({catColor: "rgba(241, 49, 255, 0.65)"})}
-    else if(this.props.feed.Categories[0] === "lectures"){this.setState({catColor: "rgba(158, 120, 228, 0.65)"})}
-    else if(this.props.feed.Categories[0] === "fitness"){this.setState({catColor: "rgba(91, 178, 206, 0.65)"})}
-    else if(this.props.feed.Categories[0] === "fun"){this.setState({catColor: "rgba(32, 212, 159, 0.65)"})}
-    else if(this.props.feed.Categories[0] === "other"){this.setState({catColor: "rgba(51, 190, 46, 0.65)"})}
+    const itemCategoryArr = eval(this.props.feed.ItemTags)
+    const itemCategory = itemCategoryArr[0]
+    if(itemCategory === "kids"){this.setState({catColor: "rgba(241, 49, 255, 0.65)"})}
+    else if(itemCategory === "lectures"){this.setState({catColor: "rgba(158, 120, 228, 0.65)"})}
+    else if(itemCategory === "fitness"){this.setState({catColor: "rgba(91, 178, 206, 0.65)"})}
+    else if(itemCategory === "fun"){this.setState({catColor: "rgba(32, 212, 159, 0.65)"})}
+    else if(itemCategory === "other"){this.setState({catColor: "rgba(51, 190, 46, 0.65)"})}
     } 
   
   handleSave(){
