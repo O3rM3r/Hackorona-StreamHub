@@ -1,0 +1,129 @@
+fitness,442,3
+kids,443,1
+ fitness,443,
+kids,444,1
+ lectures,444,
+kids,445,1
+ fitness,445,
+kids,447,1
+ lectures,447,
+kids,448,1
+kids,449,1
+ lectures,449,
+kids,450,1
+ fun,450,
+kids,451,1
+kids,452,1
+ lectures,452,
+lectures,454,2
+kids,455,1
+lectures,456,2
+lectures,461,2
+lectures,463,2
+lectures,464,2
+lectures,465,2
+lectures,467,2
+ kids,467,
+lectures,468,2
+lectures,470,2
+lectures,471,2
+lectures,472,2
+lectures,473,2
+lectures,475,2
+fun,477,4
+lectures,480,2
+lectures,481,2
+lectures,482,2
+ fun,482,
+lectures,487,2
+lectures,488,2
+lectures,489,2
+fitness,490,3
+ lectures,490,
+lectures,491,2
+lectures,492,2
+lectures,494,2
+ fun,494,
+lectures,495,2
+ fun,495,
+lectures,496,2
+ fun,496,
+lectures,497,2
+lectures,498,2
+lectures,499,2
+lectures,500,2
+lectures,501,2
+lectures,502,2
+ fun,502,
+lectures,504,2
+lectures,505,2
+lectures,506,2
+lectures,508,2
+lectures,510,2
+lectures,511,2
+lectures,512,2
+lectures,513,2
+fitness,514,3
+ lectures,514,
+lectures,517,2
+lectures,518,2
+lectures,519,2
+lectures,522,2
+lectures,523,2
+lectures,524,2
+lectures,527,2
+lectures,528,2
+lectures,529,2
+lectures,532,2
+lectures,533,2
+lectures,535,2
+lectures,537,2
+lectures,540,2
+lectures,541,2
+lectures,542,2
+kids,544,1
+lectures,547,2
+fitness,548,3
+ fun,548,
+fitness,549,3
+ kids,549,
+lectures,550,2
+fitness,551,3
+ kids,551,
+lectures,552,2
+lectures,553,2
+lectures,554,2
+lectures,555,2
+lectures,557,2
+lectures,558,2
+lectures,559,2
+lectures,562,2
+lectures,563,2
+lectures,564,2
+lectures,565,2
+lectures,566,2
+fitness,567,3
+lectures,572,2
+lectures,574,2
+fitness,576,3
+lectures,577,2
+lectures,582,2
+lectures,597,2
+lectures,611,2
+lectures,613,2
+lectures,614,2
+lectures,615,2
+lectures,616,2
+fitness,617,3
+lectures,618,2
+lectures,621,2
+fun,627,4
+lectures,628,2
+lectures,630,2
+lectures,631,2
+lectures,633,2
+lectures,634,2
+lectures,641,2
+lectures,642,2
+lectures,644,2
+lectures,655,2

@@ -24,7 +24,8 @@ namespace LiveyServer.Controllers
         {
             try
             {
-                return db.Items.ToList();
+               
+                return db.Items.Include(x=>x.Categories).ToList().OrderBy(x => x.ItemStartDateObj.Ticks).ToList();
             }
             catch(Exception ee)
             {
