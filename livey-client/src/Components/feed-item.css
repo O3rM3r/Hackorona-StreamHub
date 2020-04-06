@@ -32,7 +32,8 @@
 
 .feed-item-title h2 {
     display: flex;
-    font-size: 13pt;
+    font-size: 12.5pt;
+    padding-right: 5px;
 }
 
 .feed-item-title h3 {
@@ -99,6 +100,15 @@
     align-self: center;
     justify-content: center;
     flex-direction: column;
+    cursor: pointer;
 }
+
+.feed-item-icons-counter {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 
 

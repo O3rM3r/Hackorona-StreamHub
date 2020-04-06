@@ -27,7 +27,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-
+//import db from "./db.json"
 
 function App() {
 
@@ -45,6 +45,7 @@ function App() {
   //  const [isFeedDialogOpen, handleFeedDialogChange] = useState(false);
   //DayPanel Filtering Function:
   const [daySelected, setDaySelected] = useState(moment().format('YYYY-MM-DD'))
+  const [catSelected, setCatSelected] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
 
   const childSocialLoginRef = createRef();
@@ -59,6 +60,7 @@ function App() {
    
     const apiCall =await fetch(`${window.baseUrl}Items/`);
     const items=await apiCall.json();
+    //const items = db
     console.log('items',items);
      top100Films.push({ title: 'The Shawshank Redemption', year: 1994 });
      setAutoComleteFeed(items);
@@ -125,9 +127,9 @@ function App() {
     <div className="app">
       
       <div className="app-header-container">
-        {/* <h1>{daySelected}</h1> Testing */}
+        {/* <h1>{catSelected}</h1> Testing */}
       <div style={{marginLeft:30}}>
-      <img src={require('./StreamHub_Logo.png')} style={{width:300}}/>
+      <img src={require('./StreamHub_Logo.png')} style={{width:240}}/>
       </div>
       <div  style={{marginLeft:300}}>
       
@@ -177,13 +179,13 @@ function App() {
           <SocialLoginDialog  open={isLoginDialogOpen} onClose={handleLoginDialogClose}  ref={childSocialLoginRef}/>
       </div>
       <div className="app-categories-container">
-        <CategoryPanel categories={categories} />
+        <CategoryPanel categories={categories} cat={setCatSelected}/>
       </div>
       <div className="app-days-container">
         <DaysPanel dayChange={setDaySelected} day={setDaySelected}/>
       </div>
       <div className="app-feed-container">
-        <FeedPanel  feeds={feedItems} dayFilter={daySelected}/>
+        <FeedPanel  feeds={feedItems} dayFilter={daySelected} catFilter={catSelected}/>
       </div>
     </div>
 

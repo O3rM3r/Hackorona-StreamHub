@@ -1,22 +1,27 @@
+.category-panel-grid{
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+
 .category-panel{
     display: flex;
+    grid-row: 1;
     justify-content: space-around;
     align-content: center;
     padding-left: 15vw;
     padding-right: 15vw;
 }
 
+.category-underline{
+    display: flex;
+    grid-row: 2;
+    justify-content: space-around;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    padding-bottom: 10px;
+}
 
-
-
-/* .category-panel{
-    display: grid;
-    grid-auto-columns: minmax(150px ,200px);
-    grid-template-rows: 1fr;
-    grid-gap: 20px;
-    height: 100%;
-    box-sizing: border-box;
-    padding: 0px 10vw 0px 10vw;
-    justify-content: center;
-    align-content: flex-start;
-} */
+.category-underline-lines{
+    width: 11vw;
+    height: 7px;
+}

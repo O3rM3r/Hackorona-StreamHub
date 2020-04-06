@@ -88,10 +88,10 @@ class DaysPanel extends Component{
                         {`${this.calcDay(6)} ${this.calcDate(6)}.${this.calcMonth(6)}`}
                     </h1>
                 </div>
-                <h1 className="days-panel-filter-title">Select Time &nbsp; &nbsp;</h1>
+                {/* <h1 className="days-panel-filter-title">Select Time &nbsp; &nbsp;</h1>
                 <div className="days-panel-filter">
                     <RangeSlider/>
-                </div>
+                </div> */}
             </div>
         )
     }

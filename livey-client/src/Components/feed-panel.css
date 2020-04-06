@@ -4,6 +4,20 @@
     grid-template-rows: 1fr;
 }
 
+.feed-panel-title{
+    display: grid;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.feed-panel-title-items{
+    display: grid;
+    grid-column: 1;
+    grid-row: 2;
+    font-weight: 300;
+    
+}
+
 .feed-panel-filter{
     display: grid;
     grid-column: 2;
