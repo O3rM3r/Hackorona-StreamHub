@@ -18,7 +18,9 @@ class FeedPanel extends Component{
 
         const feedItems = this.props.feeds && this.props.feeds.map(item => {
             const itemDate = item.ItemStartDateObj.slice(0,10)
-            const itemCategory = item.Categories[0]
+            const itemCategoryArr = eval(item.ItemTags)
+            const itemCategory = itemCategoryArr[0]
+            console.log("tagName:",itemCategory)        
             const randomImg = `https://i.picsum.photos/id/${Math.round(Math.random() * 1000)}/200/300.jpg`           
             if (this.props.dayFilter === itemDate) {
                 if(this.props.catFilter === itemCategory) {
@@ -28,7 +30,8 @@ class FeedPanel extends Component{
             } else {
                 return null
             } 
-        })        
+        })
+  
 
         const filtered = feedItems.filter(function (el) {
         return el != null;
